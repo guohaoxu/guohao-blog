@@ -1,37 +1,32 @@
-<!DOCTYPE html>
+<!doctype html>
 <html>
-<head>
-<meta charset="UTF-8" />
-<title>Blog</title>
-<link rel="stylesheet" href="/stylesheets/style.css">
-</head>
-<body>
-
-<header>
-<h1><%= title %></h1>
-</header>
-
-<nav>
-<span><a title="主页" href="/">home</a></span>
-<span><a title="存档" href="/archive">archive</a></span>
-<span><a title="标签" href="/tags">tags</a></span>
-<span><a title="友情链接" href="/links">links</a></span>
-<% if (user) { %>
-  <span><a title="上传" href="/upload">upload</a></span>
-  <span><a title="发表" href="/post">post</a></span>
-  <span><a title="登出" href="/logout">logout</a></span>
-<% } else { %>
-  <span><a title="登录" href="/login">login</a></span>
-  <span><a title="注册" href="/reg">register</a></span>
-<% } %>
-<span><form action="/search" method="GET"><input type="text" name="keyword" placeholder="SEARCH" class="search" /></form></span>
-</nav>
-
-<article>
-
-<% if (success) { %>
-  <div><%= success %></div>
-<% } %>
-<% if (error) { %>
-  <div><%= error %> </div>
-<% } %>
+    <head>
+        <meta charset="utf-8">
+        <title>Blog</title>
+        <link rel="stylesheet" href="<%= ctx %>/css/normalize.css">
+        <link rel="stylesheet" href="<%= ctx %>/css/main.css">
+    </head>
+    <body>
+        <div class="top">
+            <div class="nav">
+                <a href="/" <% if (nav=="home") { %> class="cur" <% } %>>首 页</a>
+                <% if (user) { %>
+                <a href="/post" <% if (nav=="post") { %> class="cur" <% } %>>发表</a>
+                <a href="/upload" <% if (nav=="upload") { %> class="cur" <% } %>>上传</a>
+                <a href="/logout">退出</a>
+                <span>欢迎你，<%= user.name %></span>
+                <% } else { %>
+                <a href="/login" <% if (nav=="login") { %> class="cur" <% } %>>登 录</a>
+                <a href="/reg" <% if (nav=="reg") { %> class="cur" <% } %>>注 册</a>
+                <% } %>
+            </div>
+        </div>
+        <div class="content">
+            <h1><%= title %></h1>
+            <% if (success) { %>
+            <div class="succ"><%= success %></div>
+            <% } %>
+            <% if (error) { %>
+            <div class="err"><%= error %></div>
+            <% } %>
+        
