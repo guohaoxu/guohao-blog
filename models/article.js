@@ -93,10 +93,10 @@ Article.getOne = function (author, day, title, callback) {
 Article.edit = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            return callback(err);
+            return callback(err);    
         }
         db.collection('articles').findOne({
-            authohr: author,
+            author: author,
             'time.day': day,
             title: title
         }, function (err, doc) {
@@ -104,11 +104,54 @@ Article.edit = function (author, day, title, callback) {
             if (err) {
                 return callback(err);
             }
-            return  callback(null, doc);
+            callback(null, doc);
         });
     });
 }
 
+Article.update = function (author, day, title, content, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);    
+        }
+        db.collection('articles').update({
+            author: author,
+            'time.day': day,
+            title: title
+        }, {
+            $set: {
+                content: content
+            }
+        }, function (err) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null);
+        });
+    });
+}
+
+Article.remove = function (author, day, title, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);    
+        }
+        db.collection('articles').remove({
+            author: author,
+            'time.day': day,
+            title: title
+        }, {
+            w: 1
+        }, function (err) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null);
+        });
+    });
+}
 
 
 

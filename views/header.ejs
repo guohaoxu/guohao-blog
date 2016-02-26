@@ -14,7 +14,7 @@
                 <a href="/post" <% if (nav=="article") { %> class="cur" <% } %>>发表</a>
                 <a href="/upload" <% if (nav=="upload") { %> class="cur" <% } %>>上传</a>
                 <a href="/logout">退出</a>
-                <span>欢迎你，<%= user.name %></span>
+                <span>欢迎你，<%= user %></span>
                 <% } else { %>
                 <a href="/login" <% if (nav=="login") { %> class="cur" <% } %>>登 录</a>
                 <a href="/reg" <% if (nav=="reg") { %> class="cur" <% } %>>注 册</a>

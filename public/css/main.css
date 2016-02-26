@@ -45,17 +45,19 @@ textarea {
     resize: vertical;
 }
 
-.clearfix:before,
-.clearfix:after {
+.article-content:before,
+.article-content:after {
     content: " ";
     display: table;
 }
-.clearfix:after {
+.article-content:after {
     clear: both;
 }
-.clearfix {
+.article-content {
     *zoom: 1;
 }
+
+p{padding: 0 0 10px; margin: 0;}
 
 a{text-decoration: none;}
 
@@ -79,3 +81,4 @@ form label{display:block; margin-bottom: 10px;}
 .article-title a:hover{color: #f33;}
 .article-info{line-height: 30px; font-size: 12px;}
 .article-content{padding: 10px; font-size: 14px; background: #f1f1f1;}
+.article-content img{float: left; margin-right: 10px; max-width:300px; vertical-align: middle;}

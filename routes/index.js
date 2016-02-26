@@ -58,7 +58,7 @@ module.exports = function (app) {
                 req.flash('error', '密码错误！');
                 return res.redirect('/login');
             }
-            req.session.user = docs[0];
+            req.session.user = docs[0].name;
             req.flash('success', '登录成功!');
             res.redirect('/');
         });
@@ -111,7 +111,7 @@ module.exports = function (app) {
                     req.flash('error', err);
                     return res.redirect('/reg');
                 }
-                req.session.user = newUser;
+                req.session.user = newUser.name;
                 req.flash('success', '注册成功！');
                 res.redirect('/');
             });
@@ -130,7 +130,7 @@ module.exports = function (app) {
     });
     app.post('/post', checkLogin, function (req, res) {
         var currentUser = req.session.user,
-            article = new Article(currentUser.name, req.body.title, req.body.post);
+            article = new Article(currentUser, req.body.title, req.body.post);
         article.save(function (err) {
             if (err) {
                 req.flash('error', err);
@@ -198,18 +198,43 @@ module.exports = function (app) {
     });
     app.get('/edit/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
-        Article.edit(currentUser.name, req.params.day, req.name.title, function (err, article) {
+        Article.edit(currentUser, req.params.day, req.params.title, function (err, article) {
             if (err) {
                 req.flash('error', err);
-                return res.direct('back');
+                return res.redirect('/');
             }
             res.render('edit', {
-                title: '编辑',
+                title: req.params.title,
+                ctx: ctx,
+                nav: '',
                 article: article,
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
+        });
+    });
+    app.post('/edit/:author/:day/:title', checkLogin, function (req, res) {
+        var currentUser = req.session.user
+        Article.update(currentUser, req.params.day, req.params.title, req.body.content, function (err, article) {
+            var url = encodeURI('/u/' + req.params.author + '/' + req.params.day + '/' + req.params.title);
+            if (err) {
+                req.flash('error', err);
+                return res.redirect(url);
+            }
+            req.flash('success', '修改成功！');
+            res.redirect(url);
+        });
+    });
+    app.get('/remove/:author/:day/:title', checkLogin, function (req, res) {
+        var currentUser = req.session.user
+        Article.remove(currentUser, req.params.day, req.params.title, function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            req.flash('success', '删除成功！');
+            res.redirect('/');
         });
     });
     

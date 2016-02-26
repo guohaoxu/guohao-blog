@@ -1,0 +1,11 @@
+<%- include header %>
+<form method="post" action="">
+    <div>
+        <label>标题：<input type="text" name="title" value=<%= article.title %> disabled></label>
+    </div>
+    <div>
+        <label>正文：<textarea name="content" rows="10" cols="100"><%- article.content %></textarea></label>
+    </div>
+    <div><input type="submit" value="发表" class="sub-btn"></div>
+</form>
+<%- include footer %>
