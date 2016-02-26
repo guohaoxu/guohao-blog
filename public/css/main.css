@@ -73,9 +73,9 @@ form label{display:block; margin-bottom: 10px;}
 .sub-btn:active{box-shadow: 0px 3px 5px rgba(0,0,0,.2) inset; line-height: 32px;}
 .succ{color: #3c3;}
 .err{color: #c33;}
-.post-per{margin-bottom: 10px; border-bottom: 1px dashed #ccc;}
-.post-title{font-size: 16px;}
-.post-title a{color: #a33;}
-.post-title a:hover{color: #f33;}
-.post-info{line-height: 30px; font-size: 12px;}
-.post-content{padding: 10px; font-size: 14px; background: #f1f1f1;}
+.article-per{margin-bottom: 10px; border-bottom: 1px dashed #ccc;}
+.article-title{font-size: 16px;}
+.article-title a{color: #a33;}
+.article-title a:hover{color: #f33;}
+.article-info{line-height: 30px; font-size: 12px;}
+.article-content{padding: 10px; font-size: 14px; background: #f1f1f1;}

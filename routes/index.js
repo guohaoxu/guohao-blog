@@ -1,6 +1,6 @@
 var crypto = require('crypto'),
     User = require('../models/user.js'),
-    Post = require('../models/post.js'),
+    Article = require('../models/article.js'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -21,16 +21,16 @@ module.exports = function (app) {
     }
     
 	app.get('/', function (req, res) {
-        Post.getAll(null, function (err, posts) {
+        Article.getAll(null, function (err, articles) {
             if (err) {
-                posts = [];
+                articles = [];
             } 
             res.render('index', {
                 title: '这是首页',
                 ctx: ctx,
                 nav: 'home',
                 user: req.session.user,
-                posts: posts,
+                articles: articles,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
@@ -122,7 +122,7 @@ module.exports = function (app) {
         res.render('post', {
             title: '发表',
             ctx: ctx,
-            nav: 'post',
+            nav: 'article',
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
@@ -130,8 +130,8 @@ module.exports = function (app) {
     });
     app.post('/post', checkLogin, function (req, res) {
         var currentUser = req.session.user,
-            post = new Post(currentUser.name, req.body.title, req.body.post);
-        post.save(function (err) {
+            article = new Article(currentUser.name, req.body.title, req.body.post);
+        article.save(function (err) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
@@ -156,13 +156,13 @@ module.exports = function (app) {
         res.redirect('/');
     });
     
-    app.get('/u/:name', function (req, res) {
-        User.get(req.params.name, function (err, docs) {
+    app.get('/u/:author', function (req, res) {
+        User.get(req.params.author, function (err, docs) {
             if (!docs.length) {
                 req.flash('error', '用户名不存在！');
                 return res.redirect('/');
             }
-            Post.getAll(req.params.name, function (err, posts) {
+            Article.getAll(req.params.author, function (err, articles) {
                 if (err) {
                     req.flash('error', err);
                     return res.redirect('/');
@@ -172,15 +172,15 @@ module.exports = function (app) {
                     ctx: ctx,
                     nav: '',
                     user: req.session.user,
-                    posts: posts,
+                    articles: articles,
                     success: req.flash('success').toString(),
                     error: req.flash('error').toString()
                 });
             });
         });
     });
-    app.get('/u/:name/:day/:title', function (req, res) {
-        Post.getOne(req.params.name, req.params.day, req.params.title, function (err, post) {
+    app.get('/u/:author/:day/:title', function (req, res) {
+        Article.getOne(req.params.author, req.params.day, req.params.title, function (err, article) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
@@ -189,23 +189,23 @@ module.exports = function (app) {
                 title: req.params.title,
                 ctx: ctx,
                 nav: '',
-                post: post,
+                article: article,
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
         });
     });
-    app.get('/edit/:name/:day/:title', checkLogin, function (req, res) {
+    app.get('/edit/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
-        Post.edit(currentUser.name, req.params.day, req.name.title, function (err, post) {
+        Article.edit(currentUser.name, req.params.day, req.name.title, function (err, article) {
             if (err) {
                 req.flash('error', err);
                 return res.direct('back');
             }
             res.render('edit', {
                 title: '编辑',
-                post: post,
+                article: article,
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()

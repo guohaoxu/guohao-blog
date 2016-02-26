@@ -1,9 +1,9 @@
 <%- include header %>
-<% posts.forEach(function (post, index) { %>
-<div class="post-per">
-    <div class="post-title"><a href="/u/<%= post.name %>/<%= post.time.day %>/<%= post.title %>"><%= post.title %></a></div>
-    <div class="post-info">作者： <a href="/u/<%= post.name %>"><%= post.name %></a> | 日期： <%= post.time.minute %></div>
-    <div class="post-content"><%- post.post %></div>
+<% articles.forEach(function (article, index) { %>
+<div class="article-per">
+    <div class="article-title"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></div>
+    <div class="article-info">作者： <a href="/u/<%= article.author %>"><%= article.author %></a> | 日期： <%= article.time.minute %></div>
+    <div class="article-content"><%- article.content %></div>
 </div>
 <% }) %>
 <%- include footer %>

@@ -3,16 +3,16 @@ var MongoClient = require('mongodb').MongoClient,
     url = settings.url,
     markdown = require('markdown').markdown;
 
-function Post(name, title, post) {
-    this.name = name;
+function Article(author, title, content) {
+    this.author = author;
     this.title = title;
-    this.post = post;
+    this.content = content;
 }
 
-module.exports = Post;
+module.exports = Article;
 
 //存储一篇新文章
-Post.prototype.save = function (callback) {
+Article.prototype.save = function (callback) {
     var date = new Date();
     var time = {
         date: date,
@@ -22,18 +22,18 @@ Post.prototype.save = function (callback) {
         minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
     }
     
-    var post = {
-        name: this.name,
+    var article = {
+        author: this.author,
         time: time,
         title: this.title,
-        post: this.post
+        content: this.content
     };
     
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
-        db.collection('posts').insert(post, function (err, result) {
+        db.collection('articles').insert(article, function (err, result) {
             db.close();
             if (err) {
                 db.close();
@@ -45,16 +45,16 @@ Post.prototype.save = function (callback) {
 };
 
 //读取多篇文章
-Post.getAll = function (name, callback) {
+Article.getAll = function (author, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
         var query = {};
-        if (name) {
-            query.name = name;
+        if (author) {
+            query.author = author;
         }
-        db.collection('posts').find(query).sort({
+        db.collection('articles').find(query).sort({
             time: -1
         }).toArray(function(err, docs) {
             db.close();
@@ -62,7 +62,7 @@ Post.getAll = function (name, callback) {
                 return callback(err);
             }
             docs.forEach(function (doc) {
-                doc.post = markdown.toHTML(doc.post);
+                doc.content = markdown.toHTML(doc.content);
             });
             callback(null, docs);
         });
@@ -70,13 +70,13 @@ Post.getAll = function (name, callback) {
 };
 
 //读取一篇文章
-Post.getOne = function (name, day, title, callback) {
+Article.getOne = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);    
         }
-        db.collection('posts').findOne({
-            name: name,
+        db.collection('articles').findOne({
+            author: author,
             'time.day': day,
             title: title
         }, function (err, doc) {
@@ -84,19 +84,19 @@ Post.getOne = function (name, day, title, callback) {
             if (err) {
                 return callback(err);
             }
-            doc.post = markdown.toHTML(doc.post);
+            doc.content = markdown.toHTML(doc.content);
             callback(null, doc);
         });
     });
 }
 
-Post.edit = function (name, day, title, callback) {
+Article.edit = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
         }
-        db.collection('posts').findOne({
-            name: name,
+        db.collection('articles').findOne({
+            authohr: author,
             'time.day': day,
             title: title
         }, function (err, doc) {
