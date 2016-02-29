@@ -19,14 +19,15 @@ Article.prototype.save = function (callback) {
         year: date.getFullYear(),
         month: date.getFullYear() + "-" + (date.getMonth() + 1),
         day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-        minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + "-" + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
+        minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
     }
     
     var article = {
         author: this.author,
         time: time,
         title: this.title,
-        content: this.content
+        content: this.content,
+        comments: []
     };
     
     MongoClient.connect(url, function (err, db) {
@@ -85,6 +86,11 @@ Article.getOne = function (author, day, title, callback) {
                 return callback(err);
             }
             doc.content = markdown.toHTML(doc.content);
+            if (doc.comments) {
+                doc.comments.forEach(function (comment) {
+                   comment.content = markdown.toHTML(comment.content); 
+                });
+            }
             callback(null, doc);
         });
     });

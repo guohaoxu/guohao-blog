@@ -4,4 +4,5 @@
     <div class="article-info">作者： <a href="/u/<%= article.author %>"><%= article.author %></a> | 日期： <%= article.time.minute %> <% if (user == article.author) { %> <a href="/edit/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">编辑</a><a href="/remove/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">删除</a><% } %></div>
     <div class="article-content"><%- article.content %></div>
 </div>
+<%- include comment %>
 <%- include footer %>
