@@ -1,16 +1,16 @@
 var express = require('express'),
-app = express(),
-path = require('path'),
-bodyParser = require('body-parser'),
-cookieParser = require('cookie-parser'),
-session = require('express-session'),
-flash = require('connect-flash'),
+    app = express(),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    cookieParser = require('cookie-parser'),
+    session = require('express-session'),
+    flash = require('connect-flash'),
 
-favicon = require('serve-favicon'),
-logger = require('morgan'),
+    favicon = require('serve-favicon'),
+    logger = require('morgan'),
 
-routes = require('./routes/index'),
-settings = require('./settings');
+    routes = require('./routes/index'),
+    settings = require('./settings');
 
 app.set('port', process.env.PORT || 3000);
 

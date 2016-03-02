@@ -20,12 +20,12 @@ module.exports = function (app) {
     } else {
         ctx = "http://static.guohaoxu.com";
     }
-    
+
 	app.get('/', function (req, res) {
         Article.getAll(null, function (err, articles) {
             if (err) {
                 articles = [];
-            } 
+            }
             res.render('index', {
                 title: '这是首页',
                 ctx: ctx,
@@ -64,13 +64,13 @@ module.exports = function (app) {
             res.redirect('/');
         });
     });
-    
+
     app.get('/logout', checkLogin, function (req, res) {
         req.session.user = null;
         req.flash('success', '登出成功！');
         res.redirect('/');
     })
-    
+
     app.get('/reg', checkNotLogin, function (req, res) {
        res.render('reg', {
            title: '这是注册页',
@@ -118,7 +118,7 @@ module.exports = function (app) {
             });
         });
     });
-    
+
     app.get('/post', checkLogin, function (req, res) {
         res.render('post', {
             title: '发表',
@@ -141,7 +141,7 @@ module.exports = function (app) {
             res.redirect('/');
         })
     });
-    
+
     app.get('/upload', checkLogin, function (req, res) {
         res.render('upload', {
             title: '文件上传',
@@ -151,12 +151,12 @@ module.exports = function (app) {
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
         });
-    }); 
+    });
     app.post('/upload', checkLogin, upload.array('imgfile'), function (req, res) {
         req.flash('success', '文件上传成功！');
         res.redirect('/');
     });
-    
+
     app.get('/u/:author', function (req, res) {
         User.get(req.params.author, function (err, docs) {
             if (!docs.length) {
@@ -207,7 +207,7 @@ module.exports = function (app) {
             time: time,
             content: req.body.content
         };
-        
+
         var newComment = new Comment(req.params.author, req.params.day, req.params.title, comment);
         newComment.save(function (err) {
             if (err) {
@@ -217,7 +217,7 @@ module.exports = function (app) {
             req.flash('success', '留言成功！');
             res.redirect('back');
         })
-        
+
     });
     app.get('/edit/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
@@ -260,7 +260,7 @@ module.exports = function (app) {
             res.redirect('/');
         });
     });
-    
+
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录！');
@@ -268,7 +268,7 @@ module.exports = function (app) {
         }
         next();
     }
-    
+
     function checkNotLogin(req, res, next) {
         if (req.session.user) {
             req.flash('error', '已登录！');
@@ -276,5 +276,5 @@ module.exports = function (app) {
         }
         next();
     }
-        
+
 }
