@@ -1,4 +1,4 @@
-# This is now 15:42 2016.3.1....
+# This is now 
 Here is local.
-=======
-# This is now 15:42 2016.3.1
+---
+# This is now
