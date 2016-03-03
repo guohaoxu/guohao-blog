@@ -57,8 +57,8 @@ Article.getTen = function (author, page, callback) {
         }
         db.collection('articles').count(query, function (err, total) {
             db.collection('articles').find(query, {
-                skip: (page - 1) * 10,
-                limit: 10
+                skip: (page - 1) * 5,
+                limit: 5
             }).sort({
                 time: -1
             }).toArray(function (err, results) {
@@ -93,6 +93,26 @@ Article.getOne = function (author, day, title, callback) {
                 doc.comments.forEach(function (comment) {
                    comment.content = markdown.toHTML(comment.content); 
                 });
+            }
+            callback(null, doc);
+        });
+    });
+}
+
+//获取编辑一篇文章
+Article.edit = function (author, day, title, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        db.collection('articles').findOne({
+            author: author,
+            'time.day': day,
+            title: title
+        }, function (err, doc) {
+            db.close();
+            if (err) {
+                return callback(err);
             }
             callback(null, doc);
         });
