@@ -1,0 +1,12 @@
+<%- include header %>
+<ul class="archive">
+<% var lastYear = 0 %>
+<% articles.forEach(function (article, index) { %>
+<% if (lastYear != article.time.year) { %>
+    <li><%= article.time.year %></li>
+<% } else { %>
+<li><%= article.time.day %></li>
+    <li><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></li>
+<% } %>
+<% }) %>
+</ul>

@@ -269,6 +269,24 @@ module.exports = function (app) {
         });
     });
 
+    app.get('/archive', function (req, res) {
+        Article.getArchive(function (err, articles) {
+            if (err) {
+                req.flash('error', err);
+                return res.direct('/');
+            }
+            res.rend('archive', {
+                title: '存档',
+                ctx: ctx,
+                nav: 'archive',
+                user: req.session.user,
+                articles: articles,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            })
+        })
+    })
+
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录！');

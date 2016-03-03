@@ -165,7 +165,23 @@ Article.remove = function (author, day, title, callback) {
     });
 }
 
-
+//返回所有文章存档信息
+Article.getArchive = function (callback) {
+    goClient.connect(url, function (err, db) {
+        if err return callback(err);
+        db.collection('articles').find({}, {
+            'name': 1,
+            'time': 1,
+            'title': 1
+        }).sort({
+            time: -1
+        }).toArray(function (err, results) {
+            db.close();
+            if err return callback(err);
+            callback(null, results);
+        })
+    })
+}
 
 
 

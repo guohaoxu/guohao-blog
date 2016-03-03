@@ -10,6 +10,7 @@
         <div class="top">
             <div class="nav">
                 <a href="/" <% if (nav=="home") { %> class="cur" <% } %>>首 页</a>
+                <a href="/archive" <% if (nav=="archive") { %> class="cur" <% } %>>存档</a>
                 <% if (user) { %>
                 <a href="/post" <% if (nav=="article") { %> class="cur" <% } %>>发表</a>
                 <a href="/upload" <% if (nav=="upload") { %> class="cur" <% } %>>上传</a>
