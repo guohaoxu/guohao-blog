@@ -57,8 +57,8 @@ Article.getTen = function (author, page, callback) {
         }
         db.collection('articles').count(query, function (err, total) {
             db.collection('articles').find(query, {
-                skip: (page - 1) * 5,
-                limit: 5
+                skip: (page - 1) * 10,
+                limit: 10
             }).sort({
                 time: -1
             }).toArray(function (err, results) {
