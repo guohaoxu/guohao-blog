@@ -45,8 +45,8 @@ Article.prototype.save = function (callback) {
     });
 };
 
-//读取多篇文章
-Article.getAll = function (author, callback) {
+//读取10篇文章
+Article.getTen = function (author, page, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
@@ -55,6 +55,20 @@ Article.getAll = function (author, callback) {
         if (author) {
             query.author = author;
         }
+        db.collection('articles').count(query, function (err, total) {
+            db.collection('articles').find(query, {
+                skip: (page - 1) * 10,
+                limit: 10
+            }).sort({
+                time: -1
+            }).toArray(function (err, results) {
+
+            })
+        })
+
+
+
+
         db.collection('articles').find(query).sort({
             time: -1
         }).toArray(function(err, docs) {
@@ -96,25 +110,7 @@ Article.getOne = function (author, day, title, callback) {
     });
 }
 
-Article.edit = function (author, day, title, callback) {
-    MongoClient.connect(url, function (err, db) {
-        if (err) {
-            return callback(err);    
-        }
-        db.collection('articles').findOne({
-            author: author,
-            'time.day': day,
-            title: title
-        }, function (err, doc) {
-            db.close();
-            if (err) {
-                return callback(err);
-            }
-            callback(null, doc);
-        });
-    });
-}
-
+//修改一篇文章
 Article.update = function (author, day, title, content, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
@@ -138,6 +134,7 @@ Article.update = function (author, day, title, content, callback) {
     });
 }
 
+//删除一篇文章
 Article.remove = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
