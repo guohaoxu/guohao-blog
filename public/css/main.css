@@ -129,7 +129,7 @@ form label {
 .article-content img {
   float: left;
   margin-right: 10px;
-  max-width: 100px;
+  max-width: 200px;
   vertical-align: middle;
 }
 .comment-per {

@@ -5,7 +5,7 @@ var crypto = require('crypto'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, 'uploads/')
+            cb(null, 'public/images/')
         },
         filename: function (req, file, cb) {
             cb(null, file.originalname )
