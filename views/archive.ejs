@@ -2,11 +2,12 @@
 <ul class="archive">
 <% var lastYear = 0 %>
 <% articles.forEach(function (article, index) { %>
-<% if (lastYear != article.time.year) { %>
-    <li><%= article.time.year %></li>
-<% } else { %>
-<li><%= article.time.day %></li>
-    <li><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></li>
-<% } %>
+    <li><% if (lastYear != article.time.year) { %>
+    <h3><%= article.time.year %></h3>
+    <% lastYear = article.time.year } %>
+    <p><%= article.time.day %></p>
+    <div><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a> - 作者： <%= article.author %></div>
+    </li>
 <% }) %>
 </ul>
+<%- include footer %>

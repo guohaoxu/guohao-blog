@@ -275,7 +275,7 @@ module.exports = function (app) {
                 req.flash('error', err);
                 return res.direct('/');
             }
-            res.rend('archive', {
+            res.render('archive', {
                 title: '存档',
                 ctx: ctx,
                 nav: 'archive',
