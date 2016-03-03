@@ -58,7 +58,7 @@ a {
   color: #fff;
 }
 .nav, .content {
-  width: 960px;
+  width: 96%;
   margin: 0 auto;
 }
 .nav a {
