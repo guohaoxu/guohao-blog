@@ -62,24 +62,13 @@ Article.getTen = function (author, page, callback) {
             }).sort({
                 time: -1
             }).toArray(function (err, results) {
-
-            })
-        })
-
-
-
-
-        db.collection('articles').find(query).sort({
-            time: -1
-        }).toArray(function(err, docs) {
-            db.close();
-            if (err) {
-                return callback(err);
-            }
-            docs.forEach(function (doc) {
-                doc.content = markdown.toHTML(doc.content);
+                db.close();
+                if (err) return callback(err);
+                results.forEach(function (doc) {
+                    doc.content = markdown.toHTML(doc.content);
+                });
+                callback(null, results, total);
             });
-            callback(null, docs);
         });
     });
 };

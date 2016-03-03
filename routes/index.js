@@ -22,7 +22,8 @@ module.exports = function (app) {
     }
 
 	app.get('/', function (req, res) {
-        Article.getAll(null, function (err, articles) {
+        var page = req.query.p ? parseInt(req.query.p) : 1;
+        Article.getTen(null, page, function (err, articles, total) {
             if (err) {
                 articles = [];
             }
@@ -32,6 +33,9 @@ module.exports = function (app) {
                 nav: 'home',
                 user: req.session.user,
                 articles: articles,
+                page: page,
+                isFirstPage: (page - 1) == 0,
+                isLastPage: ((page - 1) * 10 + articles.length) == total,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             });
@@ -158,12 +162,13 @@ module.exports = function (app) {
     });
 
     app.get('/u/:author', function (req, res) {
+        var page = req.query.p ? parseInt(req.query.p) : 1;
         User.get(req.params.author, function (err, docs) {
             if (!docs.length) {
                 req.flash('error', '用户名不存在！');
                 return res.redirect('/');
             }
-            Article.getAll(req.params.author, function (err, articles) {
+            Article.getTen(req.params.author, page, function (err, articles, total) {
                 if (err) {
                     req.flash('error', err);
                     return res.redirect('/');
@@ -174,6 +179,9 @@ module.exports = function (app) {
                     nav: '',
                     user: req.session.user,
                     articles: articles,
+                    page: page,
+                    isFirstPage: (page - 1) == 0,
+                    isLastPage: ((page - 1) * 10 + articles.length) == total,
                     success: req.flash('success').toString(),
                     error: req.flash('error').toString()
                 });
