@@ -306,6 +306,24 @@ module.exports = function (app) {
         })
     })
 
+    app.get('/tags/:tag', function (req, res) {
+        Article.getTag(req.params.tag, function (err, articles) {
+            if (err) {
+                req.flash('error', err);
+                return res.direct('/');
+            }
+            res.render('tag', {
+                title: 'TAG:' + req.params.tag,
+                ctx: ctx,
+                nav: 'tags',
+                articles: articles,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            })
+        })
+    })
+
     function checkLogin(req, res, next) {
         if (!req.session.user) {
             req.flash('error', '未登录！');

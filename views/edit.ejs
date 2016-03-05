@@ -5,7 +5,7 @@
     </div>
     <div>
         <label>标签：</label>
-        <input type="text" name="tag1" value="<%= article.tags[0] %>" disabled> <input type="text" name="tag2"  value="<%= article.tags[1] %>" disabled> <input type="text" name="tag3" value="<%= article.tags[2] %>" disabled>
+        <input type="text" name="tag1" value="<%= article.tags && article.tags[0] %>" disabled> <input type="text" name="tag2"  value="<%= article.tags && article.tags[1] %>" disabled> <input type="text" name="tag3" value="<%= article.tags && article.tags[2] %>" disabled>
     </div>
     <div>
         <label>正文：<textarea name="content" rows="10" cols="100"><%- article.content %></textarea></label>

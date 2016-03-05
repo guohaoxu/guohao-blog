@@ -213,11 +213,16 @@ Article.getTag = function (tag, callback) {
         }
         db.collection('articles').find({
             "tags": tag
-        }, function (err, docs) {
+        }).sort({
+            time: -1
+        }).toArray(function (err, docs) {
             db.close();
             if (err) {
                 return callback(err);
             }
+            docs.forEach(function (doc) {
+                doc.content = markdown.toHTML(doc.content);
+            });
             callback(null, docs);
         })
     })
