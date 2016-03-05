@@ -135,7 +135,8 @@ module.exports = function (app) {
     });
     app.post('/post', checkLogin, function (req, res) {
         var currentUser = req.session.user,
-            article = new Article(currentUser, req.body.title, req.body.post);
+            tags = [req.body.tag1, req.body.tag2, req.body.tag3],
+            article = new Article(currentUser, req.body.title, tags, req.body.post);
         article.save(function (err) {
             if (err) {
                 req.flash('error', err);
@@ -281,6 +282,24 @@ module.exports = function (app) {
                 nav: 'archive',
                 user: req.session.user,
                 articles: articles,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            })
+        })
+    })
+
+    app.get('/tags', function (req, res) {
+        Article.getTags(function (err, articles) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
+            res.render('tags', {
+                title: '标签',
+                ctx: ctx,
+                nav: 'tags',
+                articles: articles,
+                user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
             })

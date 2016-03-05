@@ -3,9 +3,10 @@ var MongoClient = require('mongodb').MongoClient,
     url = settings.url,
     markdown = require('markdown').markdown;
 
-function Article(author, title, content) {
+function Article(author, title, tags, content) {
     this.author = author;
     this.title = title;
+    this.tags = tags;
     this.content = content;
 }
 
@@ -26,6 +27,7 @@ Article.prototype.save = function (callback) {
         author: this.author,
         time: time,
         title: this.title,
+        tags: this.tags,
         content: this.content,
         comments: []
     };
@@ -183,6 +185,40 @@ Article.getArchive = function (callback) {
                 return callback(err);
             }
             callback(null, results);
+        })
+    })
+}
+
+//返回所有tags
+Article.getTags = function (callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        db.collection('articles').distinct('tags', function (err, docs) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null, docs);
+        })
+    })
+}
+
+//返回特定标签的所有文章
+Article.getTag = function (tag, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        db.collection('articles').find({
+            "tags": tag
+        }, function (err, docs) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null, docs);
         })
     })
 }

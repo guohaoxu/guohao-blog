@@ -1,0 +1,5 @@
+<%- include header %>
+<% articles.forEach(function (tag, index) { %>
+<a href="/tags/<%= tag %>"><%= tag %></a>
+<% }) %>
+<%- include footer %>

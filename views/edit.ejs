@@ -4,6 +4,10 @@
         <label>标题：<input type="text" name="title" value=<%= article.title %> disabled></label>
     </div>
     <div>
+        <label>标签：</label>
+        <input type="text" name="tag1" value="<%= article.tags[0] %>" disabled> <input type="text" name="tag2"  value="<%= article.tags[1] %>" disabled> <input type="text" name="tag3" value="<%= article.tags[2] %>" disabled>
+    </div>
+    <div>
         <label>正文：<textarea name="content" rows="10" cols="100"><%- article.content %></textarea></label>
     </div>
     <div><input type="submit" value="发表" class="sub-btn"></div>
