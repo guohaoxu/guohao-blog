@@ -322,7 +322,25 @@ module.exports = function (app) {
                 error: req.flash('error').toString()
             })
         })
-    })
+    });
+
+    app.get('/search', function (req, res) {
+        Article.search(req.query.keyword, function (err, docs) {
+            if (err) {
+                req.flash('error', err);
+                res.redirect('/');
+            }
+            res.render('search', {
+                title: 'SEARCH:' + req.query.keyword,
+                ctx: ctx,
+                nav: 'search',
+                articles: docs,
+                user: req.session.user,
+                success: req.flash('success').toString(),
+                error: req.flash('error').toString()
+            })
+        });
+    });
 
     function checkLogin(req, res, next) {
         if (!req.session.user) {

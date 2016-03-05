@@ -12,6 +12,11 @@
                 <a href="/" <% if (nav=="home") { %> class="cur" <% } %>>首 页</a>
                 <a href="/archive" <% if (nav=="archive") { %> class="cur" <% } %>>存档</a>
                 <a href="/tags" <% if (nav=="tags") { %> class="cur" <% } %>>标签</a>
+                <span class="search-span">
+                    <form action="/search" method="get">
+                        <input type="tex" name="keyword" placeholder="输入标题搜索">
+                    </form>
+                </span>
                 <% if (user) { %>
                 <a href="/post" <% if (nav=="article") { %> class="cur" <% } %>>发表</a>
                 <a href="/upload" <% if (nav=="upload") { %> class="cur" <% } %>>上传</a>

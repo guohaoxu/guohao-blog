@@ -97,7 +97,7 @@ Article.getOne = function (author, day, title, callback) {
             if (err) {
                 return callback(err);
             }
-            console.log("r: " + util.inspect(r));
+            //console.log("r: " + util.inspect(r));
             r.value.content = markdown.toHTML(r.value.content);
             if (r.value.comments) {
                 r.value.comments.forEach(function (comment) {
@@ -236,7 +236,30 @@ Article.getTag = function (tag, callback) {
     })
 }
 
-
+//通过标题关键字搜索
+Article.search = function (keyword, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        var k_reg = new RegExp(keyword, 'i');
+        db.collection('articles').find({
+            title: k_reg
+        }, {
+            'author': 1,
+            'time': 1,
+            'title': 1
+        }).sort({
+            time: -1
+        }).toArray(function (err, docs) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null, docs);
+        })
+    })
+}
 
 
 
