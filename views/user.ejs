@@ -11,6 +11,7 @@
         <% }) } %>
     </div>
     <div class="article-content"><%- article.content %></div>
+    <div>阅读：<%= article.pv %> | <% if (article.comments) { %>评论： <%=  article.comments.length %><% } %></div>
 </div>
 <% }) %>
 <%- include page %>

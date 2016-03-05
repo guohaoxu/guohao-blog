@@ -1,7 +1,8 @@
 var MongoClient = require('mongodb').MongoClient,
     settings = require('../settings.js'),
     url = settings.url,
-    markdown = require('markdown').markdown;
+    markdown = require('markdown').markdown,
+    util = require('util');
 
 function Article(author, title, tags, content) {
     this.author = author;
@@ -29,7 +30,8 @@ Article.prototype.save = function (callback) {
         title: this.title,
         tags: this.tags,
         content: this.content,
-        comments: []
+        comments: [],
+        pv: 0
     };
     
     MongoClient.connect(url, function (err, db) {
@@ -81,22 +83,28 @@ Article.getOne = function (author, day, title, callback) {
         if (err) {
             return callback(err);    
         }
-        db.collection('articles').findOne({
+        var col = db.collection('articles');
+        col.findOneAndUpdate({
             author: author,
             'time.day': day,
             title: title
-        }, function (err, doc) {
+        }, {
+            $inc: {
+                pv: 1
+            }
+        }, function (err, r) {
             db.close();
             if (err) {
                 return callback(err);
             }
-            doc.content = markdown.toHTML(doc.content);
-            if (doc.comments) {
-                doc.comments.forEach(function (comment) {
+            console.log("r: " + util.inspect(r));
+            r.value.content = markdown.toHTML(r.value.content);
+            if (r.value.comments) {
+                r.value.comments.forEach(function (comment) {
                    comment.content = markdown.toHTML(comment.content); 
                 });
             }
-            callback(null, doc);
+            callback(null, r.value);
         });
     });
 }
