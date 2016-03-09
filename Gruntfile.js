@@ -1,24 +1,32 @@
-module.export = function (grunt) {
+module.exports = function (grunt) {
 
     grunt.initConfig({
         pkg: grunt.file.readJSON('package.json'),
 
-        uglify: {
+        jshint: {
+            files: ['Gruntfile.js', 'public/js/main.js', 'models/**/*.js', 'routes/**/*.js'],
             options: {
-                banner: '/*! <%= pkg.name %> <%= grunt.template.today("yyyy-mm-dd) %> */\n'
-            },
-            build: {
-                src: 'src/<%= pkg.name %>.js',
-                dest: 'build/<%= pkg.name %>.min.js'
+                globals: {
+                    jQuery: true
+                }
             }
+        },
+        watch: {
+            files: ['<%= jshint.files %>'],
+            tasks: ['jshint']
         }
 
     });
 
-    grunt.loadNpmTasks('grunt-contrib-uglify');
+    ['grunt-contrib-jshint', 'grunt-contrib-watch'].forEach(function (item, index) {
+        grunt.loadNpmTasks(item);
+    });
 
-    grunt.registerTask('default', ['uglify']);
-}
+    //grunt.loadNpmTasks('grunt-contrib-jshint');
+    //grunt.loadNpmTasks('grunt-contrib-watch');
+
+    grunt.registerTask('default', ['jshint']);
+};
 
 
 //aa

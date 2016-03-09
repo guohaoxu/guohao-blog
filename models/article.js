@@ -22,7 +22,7 @@ Article.prototype.save = function (callback) {
         month: date.getFullYear() + "-" + (date.getMonth() + 1),
         day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
         minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-    }
+    };
     
     var article = {
         author: this.author,
@@ -107,7 +107,7 @@ Article.getOne = function (author, day, title, callback) {
             callback(null, r.value);
         });
     });
-}
+};
 
 //获取编辑一篇文章
 Article.edit = function (author, day, title, callback) {
@@ -127,7 +127,7 @@ Article.edit = function (author, day, title, callback) {
             callback(null, doc);
         });
     });
-}
+};
 
 //修改一篇文章
 Article.update = function (author, day, title, content, callback) {
@@ -151,7 +151,7 @@ Article.update = function (author, day, title, content, callback) {
             callback(null);
         });
     });
-}
+};
 
 //删除一篇文章
 Article.remove = function (author, day, title, callback) {
@@ -173,7 +173,7 @@ Article.remove = function (author, day, title, callback) {
             callback(null);
         });
     });
-}
+};
 
 //返回所有文章存档信息
 Article.getArchive = function (callback) {
@@ -193,9 +193,9 @@ Article.getArchive = function (callback) {
                 return callback(err);
             }
             callback(null, results);
-        })
-    })
-}
+        });
+    });
+};
 
 //返回所有tags
 Article.getTags = function (callback) {
@@ -209,9 +209,9 @@ Article.getTags = function (callback) {
                 return callback(err);
             }
             callback(null, docs);
-        })
-    })
-}
+        });
+    });
+};
 
 //返回特定标签的所有文章
 Article.getTag = function (tag, callback) {
@@ -232,9 +232,9 @@ Article.getTag = function (tag, callback) {
                 doc.content = markdown.toHTML(doc.content);
             });
             callback(null, docs);
-        })
-    })
-}
+        });
+    });
+};
 
 //通过标题关键字搜索
 Article.search = function (keyword, callback) {
@@ -257,9 +257,9 @@ Article.search = function (keyword, callback) {
                 return callback(err);
             }
             callback(null, docs);
-        })
-    })
-}
+        });
+    });
+};
 
 
 
