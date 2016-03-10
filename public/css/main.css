@@ -1,3 +1,6 @@
+body {
+  font-family: "microsoft yahei";
+}
 .article-content:before,
 .article-content:after {
   content: " ";
@@ -24,6 +27,7 @@
   padding: 0px 20px;
   line-height: 3em;
   color: #fff;
+  transition: .4s;
 }
 .nav a:hover,
 .nav a.cur {
