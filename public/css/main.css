@@ -1,39 +1,5 @@
-html, button, input, select, textarea {
-  font-family: "Microsoft Yahei", "sans-serif";
-  color: #333;
-}
-body {
-  font-size: 1em;
-  line-height: 1.4;
-}
-::-moz-selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-::selection {
-  background: #b3d4fc;
-  text-shadow: none;
-}
-hr {
-  display: block;
-  height: 1px;
-  border: 0;
-  border-top: 1px solid #ccc;
-  margin: 1em 0;
-  padding: 0;
-}
-img {
-  vertical-align: middle;
-}
-fieldset {
-  border: 0;
-  margin: 0;
-  padding: 0;
-}
-textarea {
-  resize: vertical;
-}
-.article-content:before, .article-content:after {
+.article-content:before,
+.article-content:after {
   content: " ";
   display: table;
 }
@@ -43,21 +9,12 @@ textarea {
 .article-content {
   *zoom: 1;
 }
-p {
-  padding: 0 0 10px;
-  margin: 0;
-}
-a {
-  text-decoration: none;
-}
-@media only screen and (min-width: 35em) {
-  /* Style adjustments for viewports that meet the condition */
-}
 .top {
   background: #33f;
   color: #fff;
 }
-.nav, .content {
+.nav,
+.content {
   width: 80%;
   margin: 0 auto;
 }
@@ -68,7 +25,8 @@ a {
   line-height: 3em;
   color: #fff;
 }
-.nav a:hover, .nav a.cur {
+.nav a:hover,
+.nav a.cur {
   background: #00c;
 }
 form label {
@@ -95,7 +53,7 @@ form label {
   background: #5390da;
 }
 .sub-btn:active {
-  box-shadow: 0px 3px 5px rgba(0, 0, 0, .2) inset;
+  box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2) inset;
   line-height: 32px;
 }
 .succ {
@@ -142,8 +100,20 @@ form label {
   border: 1px solid #ccc;
   border-radius: 3px;
 }
-.page{padding-bottom: 40px; }
-.archive{padding: 0;}
-.archive li{list-style: none; padding: 10px; margin-bottom: 10px; background: #eee; border: 1px solid #ddd; box-shadow: 0px 1px 10px rgba(0,0,0,.1) inset; }
-.search-span{}
-.search-span form{display: inline-block;}
+.page {
+  padding-bottom: 40px;
+}
+.archive {
+  padding: 0;
+}
+.archive li {
+  list-style: none;
+  padding: 10px;
+  margin-bottom: 10px;
+  background: #eee;
+  border: 1px solid #ddd;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.1) inset;
+}
+.search-span form {
+  display: inline-block;
+}
