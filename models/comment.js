@@ -36,4 +36,4 @@ Comment.prototype.save = function (callback) {
         });
     });
     
-}
+};

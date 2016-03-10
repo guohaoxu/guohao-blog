@@ -30,7 +30,7 @@ User.prototype.save = function (callback) {
             callback(null, result);
         });
     });
-}
+};
 
 //读取用户信息
 User.get = function (username, callback) {
@@ -46,4 +46,4 @@ User.get = function (username, callback) {
             callback(null, docs);
         });
     });
-}
+};

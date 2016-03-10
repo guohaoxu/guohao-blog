@@ -5,10 +5,10 @@ var crypto = require('crypto'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, 'public/images/')
+            cb(null, 'public/images/');
         },
         filename: function (req, file, cb) {
-            cb(null, file.originalname )
+            cb(null, file.originalname );
         }
     }),
     upload = multer({ storage: storage });
@@ -34,7 +34,7 @@ module.exports = function (app) {
                 user: req.session.user,
                 articles: articles,
                 page: page,
-                isFirstPage: (page - 1) == 0,
+                isFirstPage: (page - 1) === 0,
                 isLastPage: ((page - 1) * 10 + articles.length) == total,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
@@ -73,7 +73,7 @@ module.exports = function (app) {
         req.session.user = null;
         req.flash('success', '登出成功！');
         res.redirect('/');
-    })
+    });
 
     app.get('/reg', checkNotLogin, function (req, res) {
        res.render('reg', {
@@ -144,7 +144,7 @@ module.exports = function (app) {
             }
             req.flash('success', '发布成功！');
             res.redirect('/');
-        })
+        });
     });
 
     app.get('/upload', checkLogin, function (req, res) {
@@ -181,7 +181,7 @@ module.exports = function (app) {
                     user: req.session.user,
                     articles: articles,
                     page: page,
-                    isFirstPage: (page - 1) == 0,
+                    isFirstPage: (page - 1) === 0,
                     isLastPage: ((page - 1) * 10 + articles.length) == total,
                     success: req.flash('success').toString(),
                     error: req.flash('error').toString()
@@ -225,7 +225,7 @@ module.exports = function (app) {
             }
             req.flash('success', '留言成功！');
             res.redirect('back');
-        })
+        });
 
     });
     app.get('/edit/:author/:day/:title', checkLogin, function (req, res) {
@@ -247,7 +247,7 @@ module.exports = function (app) {
         });
     });
     app.post('/edit/:author/:day/:title', checkLogin, function (req, res) {
-        var currentUser = req.session.user
+        var currentUser = req.session.user;
         Article.update(currentUser, req.params.day, req.params.title, req.body.content, function (err, article) {
             var url = encodeURI('/u/' + req.params.author + '/' + req.params.day + '/' + req.params.title);
             if (err) {
@@ -259,7 +259,7 @@ module.exports = function (app) {
         });
     });
     app.get('/remove/:author/:day/:title', checkLogin, function (req, res) {
-        var currentUser = req.session.user
+        var currentUser = req.session.user;
         Article.remove(currentUser, req.params.day, req.params.title, function (err) {
             if (err) {
                 req.flash('error', err);
@@ -284,9 +284,9 @@ module.exports = function (app) {
                 articles: articles,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
-            })
-        })
-    })
+            });
+        });
+    });
 
     app.get('/tags', function (req, res) {
         Article.getTags(function (err, articles) {
@@ -302,9 +302,9 @@ module.exports = function (app) {
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
-            })
-        })
-    })
+            });
+        });
+    });
 
     app.get('/tags/:tag', function (req, res) {
         Article.getTag(req.params.tag, function (err, articles) {
@@ -320,8 +320,8 @@ module.exports = function (app) {
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
-            })
-        })
+            });
+        });
     });
 
     app.get('/search', function (req, res) {
@@ -338,7 +338,7 @@ module.exports = function (app) {
                 user: req.session.user,
                 success: req.flash('success').toString(),
                 error: req.flash('error').toString()
-            })
+            });
         });
     });
 
@@ -350,8 +350,8 @@ module.exports = function (app) {
             user: req.session.user,
             success: req.flash('success').toString(),
             error: req.flash('error').toString()
-        })
-    })
+        });
+    });
 
     function checkLogin(req, res, next) {
         if (!req.session.user) {
@@ -369,4 +369,4 @@ module.exports = function (app) {
         next();
     }
 
-}
+};
