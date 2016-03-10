@@ -1,0 +1,51 @@
+#header {
+  color: #4d926f;
+}
+h2 {
+  color: #4d926f;
+}
+#header {
+  border-radius: 5px;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+}
+#footer {
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+}
+#header h1 {
+  font-size: 26px;
+}
+#header p {
+  font-size: 12px;
+}
+#header p a {
+  text-decoration: none;
+}
+#header p a:hover {
+  border-width: 1px;
+}
+#header {
+  color: #333333;
+  border-left: 1px;
+  border-right: 2px;
+}
+/* hehe */
+nav ul {
+  background: blue;
+}
+.inline,
+nav ul {
+  color: red;
+}
+.wrap {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+pre {
+  text-wrap: wrap;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}

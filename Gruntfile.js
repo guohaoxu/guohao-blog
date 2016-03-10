@@ -9,13 +9,21 @@ module.exports = function (grunt) {
             }
         },
         less: {
-            files: {
-                'public/css/main.css': 'pbulic/css/main.less'
+            dev: {
+                files: {
+                    'public/css/test.css': 'public/css/test.less'
+                }
             }
         },
         watch: {
-            files: ['<%= jshint.files %>', 'public/css/*.less'],
-            tasks: ['jshint']
+            js: {
+                files: ['<%= jshint.files %>'],
+                tasks: ['jshint']
+            },
+            less: {
+                files: 'public/css/*.less',
+                tasks: ['less']
+            }
         }
     });
 
