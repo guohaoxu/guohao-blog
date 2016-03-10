@@ -121,3 +121,9 @@ form label {
 .search-span form {
   display: inline-block;
 }
+body {
+  background: #f4f4f4;
+}
+.container-fluid {
+  background: #fff;
+}
