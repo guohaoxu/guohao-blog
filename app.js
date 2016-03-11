@@ -40,9 +40,6 @@ app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 routes(app);
-app.get('/html', function (req, res) {
-    res.sendFile(__dirname + '/views/index.html');
-})
 
 app.use(function(req, res, next) {
     var err = new Error('Not Found');
