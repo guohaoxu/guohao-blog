@@ -28,7 +28,7 @@ module.exports = function (grunt) {
                 tasks: ['less']
             },
             static: {
-                files: ['views/*.html']
+                files: ['views/*.html', 'public/*.html']
             }
         }
     });

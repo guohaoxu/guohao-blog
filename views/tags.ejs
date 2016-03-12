@@ -1,5 +1,23 @@
 <%- include header %>
-<% articles.forEach(function (tag, index) { %>
-<a href="/tags/<%= tag %>"><%= tag %></a>
-<% }) %>
+<table class="table table-striped table-bordered">
+    <thead>
+        <tr>
+            <th>标签</th>
+            <th>文章数</th>
+            <th>最近更新</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% for (var index = 0; index < tags.tagNames.length; index++) { %>
+            <% if (tags.tagNames[index]) { %>
+            <tr>
+                <td><a href="/tags/<%= tags.tagNames[index] %>"><%= tags.tagNames[index] %></a></td>
+                <td><%= tags.num[index] %></td>
+                <td><a href="/u/<%= tags.author[index] %>"><%= tags.author[index] %></a></td>
+            </tr>
+            <% } %>
+        <% } %>
+    </tbody>
+</table>
 <%- include footer %>
+

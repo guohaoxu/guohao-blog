@@ -5,13 +5,14 @@ var crypto = require('crypto'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, 'public/images/');
+            cb(null, 'uploads/');
         },
         filename: function (req, file, cb) {
             cb(null, file.originalname );
         }
     }),
-    upload = multer({ storage: storage });
+    upload = multer({ storage: storage }),
+    util = require('util');
 
 module.exports = function (app) {
     var ctx;
@@ -207,8 +208,13 @@ module.exports = function (app) {
         });
     });
     app.post('/u/:author/:day/:title', function (req, res) {
-       var date = new Date(),
-           time = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes());
+        var date = new Date(),
+            year = date.getFullYear(),
+            month = (date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)): (date.getMonth() + 1),
+            day = date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate(),
+            hour = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours(),
+            minute = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
+        var time = time = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
         var comment = {
             name: req.body.name,
             email: req.body.email,
@@ -223,7 +229,7 @@ module.exports = function (app) {
                 req.flash('error', err);
                 return res.redirect('back');
             }
-            req.flash('success', '留言成功！');
+            req.flash('success', '评论成功！');
             res.redirect('back');
         });
 
@@ -270,38 +276,36 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/archive', function (req, res) {
-        Article.getArchive(function (err, articles) {
-            if (err) {
-                req.flash('error', err);
-                return res.direct('/');
-            }
-            res.render('archive', {
-                title: '存档',
-                ctx: ctx,
-                nav: 'archive',
-                user: req.session.user,
-                articles: articles,
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
-            });
-        });
-    });
-
     app.get('/tags', function (req, res) {
-        Article.getTags(function (err, articles) {
+        var tags = {
+            tagNames: [],
+            num: [],
+            author: []
+        };
+        Article.getTags(function (err, tagNames) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
             }
-            res.render('tags', {
-                title: '标签',
-                ctx: ctx,
-                nav: 'tags',
-                articles: articles,
-                user: req.session.user,
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
+            tags.tagNames = tagNames;
+            var tmp = 0;
+            tagNames.forEach(function (tagName, index) {
+                Article.getTag(tagName, function (err, articles) {
+                    tags.num[index] = articles.length;
+                    tags.author[index] = articles[0].author;
+                    tmp++;
+                    if (tmp == (tagNames.length)) {
+                        res.render('tags', {
+                            ctx: ctx,
+                            nav: 'tags',
+                            tags: tags,
+                            user: req.session.user,
+                            success: req.flash('success').toString(),
+                            error: req.flash('error').toString()
+                        });
+                    }
+                });
+
             });
         });
     });
@@ -315,6 +319,7 @@ module.exports = function (app) {
             res.render('tag', {
                 title: 'TAG:' + req.params.tag,
                 ctx: ctx,
+                tag: req.params.tag,
                 nav: 'tags',
                 articles: articles,
                 user: req.session.user,
@@ -330,6 +335,10 @@ module.exports = function (app) {
                 req.flash('error', err);
                 res.redirect('/');
             }
+            docs.forEach(function (doc, index) {
+                var tmpStr = doc.title.replace(req.query.keyword, '<span class="keyword">' + req.query.keyword + '</span>');
+                doc.title2 = tmpStr;
+            });
             res.render('search', {
                 title: 'SEARCH:' + req.query.keyword,
                 ctx: ctx,

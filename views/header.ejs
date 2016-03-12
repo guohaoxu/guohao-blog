@@ -18,33 +18,60 @@
         <script src="//localhost:35729/livereload.js"></script>
     </head>
     <body>
-        <div class="top">
-            <div class="nav">
-                <a href="/" <% if (nav=="home") { %> class="cur" <% } %>>首 页</a>
-                <a href="/archive" <% if (nav=="archive") { %> class="cur" <% } %>>存档</a>
-                <a href="/tags" <% if (nav=="tags") { %> class="cur" <% } %>>标签</a>
-                <a href="/links" <% if (nav=="links") { %> class="cur" <% } %>>友情链接</a>
-                <span class="search-span">
-                    <form action="/search" method="get">
-                        <input type="tex" name="keyword" placeholder="输入标题搜索">
+        <nav class="navbar navbar-default">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                    <ul class="nav navbar-nav">
+                        <li <% if (nav=="home") { %> class="active" <% } %>><a href="/">首页</a></li>
+                        <li <% if (nav=="tags") { %> class="active" <% } %>><a href="/tags">标签</a></li>
+                    </ul>
+                    <form class="navbar-form navbar-left" action="/search" method="get">
+                        <div class="form-group">
+                            <input type="text" name="keyword" class="form-control" placeholder="输入标题">
+                        </div>
+                        <button type="submit" class="btn btn-default">搜索</button>
                     </form>
-                </span>
-                <% if (user) { %>
-                <a href="/post" <% if (nav=="article") { %> class="cur" <% } %>>发表</a>
-                <a href="/upload" <% if (nav=="upload") { %> class="cur" <% } %>>上传</a>
-                <a href="/logout">退出</a>
-                <span>欢迎你，<%= user %></span>
-                <% } else { %>
-                <a href="/login" <% if (nav=="login") { %> class="cur" <% } %>>登 录</a>
-                <a href="/reg" <% if (nav=="reg") { %> class="cur" <% } %>>注 册</a>
-                <% } %>
+                    <% if (user) { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">我<span class="caret"></span></a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/post">发表</a></li>
+                                <li><a href="/upload">上传</a></li>
+                                <li><a href="/set">设置</a></li>
+                                <li class="divider"></li>
+                                <li><a href="/logout">退出</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                    <% } else { %>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li><a href="/login" <% if (nav=="login") { %> class="cur" <% } %>>登 录</a></li>
+                        <li><a href="/reg" <% if (nav=="reg") { %> class="cur" <% } %>>注 册</a></li>
+                    <% } %>
+                </div>
             </div>
-        </div>
-        <div class="content">
-            <h1><%= title %></h1>
+        </nav>
+
+        <div class="container main-content">
             <% if (success) { %>
-            <div class="succ"><%= success %></div>
+            <div class="alert alert-success">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                <%= success %>
+            </div>
             <% } %>
             <% if (error) { %>
-            <div class="err"><%= error %></div>
+            <div class="alert alert-danger">
+                <span class="glyphicon glyphicon-exclamation-sign"></span>
+                <%= error %>
+            </div>
             <% } %>
+
+

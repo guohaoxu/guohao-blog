@@ -15,14 +15,20 @@ module.exports = Article;
 
 //存储一篇新文章
 Article.prototype.save = function (callback) {
-    var date = new Date();
+    var date = new Date(),
+        year = date.getFullYear(),
+        month = (date.getMonth() + 1) < 10 ? ('0' + (date.getMonth() + 1)): (date.getMonth() + 1),
+        day = date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate(),
+        hour = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours(),
+        minute = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
+
     var time = {
-        date: date,
-        year: date.getFullYear(),
-        month: date.getFullYear() + "-" + (date.getMonth() + 1),
-        day: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate(),
-        minute: date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate() + " " + date.getHours() + ":" +(date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes())
-    };
+            date: date,
+            year: year,
+            month: year + '-' + month,
+            day: year + '-' + month + '-' + day,
+            minute: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
+        };
     
     var article = {
         author: this.author,

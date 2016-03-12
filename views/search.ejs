@@ -1,12 +1,10 @@
 <%- include header %>
-<ul class="archive">
+<ul class="list-group my-search">
 <% var lastYear = 0 %>
 <% articles.forEach(function (article, index) { %>
-    <li><% if (lastYear != article.time.year) { %>
-    <h3><%= article.time.year %></h3>
-    <% lastYear = article.time.year } %>
-    <p><%= article.time.day %></p>
-    <div><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a> - 作者： <%= article.author %></div>
+    <li class="list-group-item clearfix">
+        <div class="pull-left"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%- article.title2 %></a> - 作者: <a href="/u/<%= article.author %>"><%= article.author %></a></div>
+        <div class="pull-right"><small><%= article.time.day %></small></div>
     </li>
 <% }) %>
 </ul>

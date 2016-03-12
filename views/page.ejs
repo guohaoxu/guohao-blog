@@ -1,8 +1,10 @@
-<div class="page">
-<% if (!isFirstPage) { %>
-    <a class="prev-page" href="?p=<%= page - 1 %>">上一页</a>
-<% } %>
-<% if (!isLastPage) { %>
-    <a class="next-page" href="?p=<%= page + 1 %>">下一页</a>
-<% } %>
-</div>
+<nav>
+    <ul class="pager">
+        <% if (!isFirstPage) { %>
+        <li><a href="?p=<%= page - 1 %>">上一页</a></li>
+        <% } %>
+        <% if (!isLastPage) { %>
+        <li><a href="?p=<%= page + 1 %>">下一页</a></li>
+        <% } %>
+    </ul>
+</nav>
