@@ -1,2 +1,2 @@
-{"_id":{"$oid":"56d054ceb0d2ad28104c7c42"},"name":"aaa","password":"47bce5c74f589f4867dbd57e9ca9f808","email":"aaa"}
-{"_id":{"$oid":"56d055c5c84adf4009513188"},"name":"bbb","password":"08f8e0260c64418510cefb2b06eee5cd","email":"bbb@qq.com"}
+{"_id":{"$oid":"56e6ebc2fbf4bfc81848c766"},"username":"aaa","password":"47bce5c74f589f4867dbd57e9ca9f808","email":null,"tx":"default.jpg","desc":null}
+{"_id":{"$oid":"56e6ec15c47aaeb81e73eddc"},"username":"admin","password":"21232f297a57a5a743894a0e4a801fc3","email":null,"tx":"admin.jpg","desc":null}

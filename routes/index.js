@@ -28,20 +28,47 @@ module.exports = function (app) {
             if (err) {
                 articles = [];
             }
-            res.render('index', {
-                title: '这是首页',
-                ctx: ctx,
-                nav: 'home',
-                user: req.session.user,
-                articles: articles,
-                page: page,
-                isFirstPage: (page - 1) === 0,
-                isLastPage: ((page - 1) * 10 + articles.length) == total,
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
-            });
+            var tmp = 0;
+            if (articles.length) {
+                articles.forEach(function (article, index) {
+                    (function (article) {
+                        User.get(article.author, function (err, docs) {
+                            article.tx = docs[0].tx;
+                            tmp++;
+                            if (tmp == articles.length) {
+                                res.render('index', {
+                                    title: '这是首页',
+                                    ctx: ctx,
+                                    nav: 'home',
+                                    user: req.session.user,
+                                    articles: articles,
+                                    page: page,
+                                    isFirstPage: (page - 1) === 0,
+                                    isLastPage: ((page - 1) * 10 + articles.length) == total,
+                                    success: req.flash('success').toString(),
+                                    error: req.flash('error').toString()
+                                });
+                            }
+                        });
+                    })(article);
+                });
+            } else {
+                res.render('index', {
+                    title: '这是首页',
+                    ctx: ctx,
+                    nav: 'home',
+                    user: req.session.user,
+                    articles: articles,
+                    page: page,
+                    isFirstPage: (page - 1) === 0,
+                    isLastPage: ((page - 1) * 10 + articles.length) == total,
+                    success: req.flash('success').toString(),
+                    error: req.flash('error').toString()
+                });
+            }
         });
 	});
+
     app.get('/login', checkNotLogin, function (req, res) {
         res.render('login', {
             title: '这是登录页',
@@ -55,7 +82,7 @@ module.exports = function (app) {
     app.post('/login', checkNotLogin, function (req, res) {
         var md5 = crypto.createHash('md5'),
             password = md5.update(req.body.password).digest('hex');
-        User.get(req.body.name, function (err, docs) {
+        User.get(req.body.username, function (err, docs) {
             if (!docs.length) {
                 req.flash('error', '用户名不存在！');
                 return res.redirect('/login');
@@ -64,7 +91,7 @@ module.exports = function (app) {
                 req.flash('error', '密码错误！');
                 return res.redirect('/login');
             }
-            req.session.user = docs[0].name;
+            req.session.user = docs[0];
             req.flash('success', '登录成功!');
             res.redirect('/');
         });
@@ -89,7 +116,7 @@ module.exports = function (app) {
     app.post('/reg', checkNotLogin, function (req, res) {
         var password = req.body.password,
             password_re = req.body['password-repeat'];
-        if (req.body.name.length < 2 || req.body.password.length < 2 || req.body['password-repeat'].length < 2) {
+        if (req.body.username.length < 2 || req.body.password.length < 2 || req.body['password-repeat'].length < 2) {
             req.flash('error', '缺少输入！');
             return res.redirect('/reg');
         }
@@ -99,11 +126,10 @@ module.exports = function (app) {
         }
         var md5 = crypto.createHash('md5'),
             newUser = new User({
-                name: req.body.name,
-                password: md5.update(req.body.password).digest('hex'),
-                email: req.body.email
+                username: req.body.username,
+                password: md5.update(req.body.password).digest('hex')
             });
-        User.get(newUser.name, function (err, docs) {
+        User.get(newUser.username, function (err, docs) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/reg');
@@ -117,10 +143,28 @@ module.exports = function (app) {
                     req.flash('error', err);
                     return res.redirect('/reg');
                 }
-                req.session.user = newUser.name;
-                req.flash('success', '注册成功！');
-                res.redirect('/');
+                req.session.user = newUser;
+                req.flash('success', '注册成功!请完善个人信息!');
+                res.redirect('/set');
             });
+        });
+    });
+
+    app.get('/set', checkLogin, function (req, res) {
+        res.render('set', {
+            nav: '',
+            user: req.session.user,
+            success: req.flash('success').toString(),
+            error: req.flash('error').toString()
+        });
+    });
+
+    app.post('/set', checkLogin, function (req, res) {
+        var desc = req.body.userdesc,
+            username = req.session.user.username;
+        User.update(username, desc, null, function () {
+            req.flash('success', '设置成功!');
+            res.redirect('/u/' + username);
         });
     });
 
@@ -137,7 +181,7 @@ module.exports = function (app) {
     app.post('/post', checkLogin, function (req, res) {
         var currentUser = req.session.user,
             tags = [req.body.tag1, req.body.tag2, req.body.tag3],
-            article = new Article(currentUser, req.body.title, tags, req.body.post);
+            article = new Article(currentUser.username, req.body.title, tags, req.body.post);
         article.save(function (err) {
             if (err) {
                 req.flash('error', err);
@@ -175,6 +219,9 @@ module.exports = function (app) {
                     req.flash('error', err);
                     return res.redirect('/');
                 }
+                articles.tx = docs[0].tx;
+                articles.author = docs[0].username;
+                articles.desc = docs[0].desc;
                 res.render('user', {
                     title: '这是' + docs[0].name + '的主页',
                     ctx: ctx,
@@ -214,10 +261,9 @@ module.exports = function (app) {
             day = date.getDate() < 10 ? ('0' + date.getDate()) : date.getDate(),
             hour = date.getHours() < 10 ? ('0' + date.getHours()) : date.getHours(),
             minute = date.getMinutes() < 10 ? ('0' + date.getMinutes()) : date.getMinutes();
-        var time = time = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+        var time = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
         var comment = {
-            name: req.body.name,
-            email: req.body.email,
+            username: req.body.username,
             website: req.body.website,
             time: time,
             content: req.body.content
@@ -236,7 +282,7 @@ module.exports = function (app) {
     });
     app.get('/edit/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
-        Article.edit(currentUser, req.params.day, req.params.title, function (err, article) {
+        Article.edit(currentUser.username, req.params.day, req.params.title, function (err, article) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
@@ -254,7 +300,7 @@ module.exports = function (app) {
     });
     app.post('/edit/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
-        Article.update(currentUser, req.params.day, req.params.title, req.body.content, function (err, article) {
+        Article.update(currentUser.username, req.params.day, req.params.title, req.body.content, function (err, article) {
             var url = encodeURI('/u/' + req.params.author + '/' + req.params.day + '/' + req.params.title);
             if (err) {
                 req.flash('error', err);
@@ -266,7 +312,7 @@ module.exports = function (app) {
     });
     app.get('/remove/:author/:day/:title', checkLogin, function (req, res) {
         var currentUser = req.session.user;
-        Article.remove(currentUser, req.params.day, req.params.title, function (err) {
+        Article.remove(currentUser.username, req.params.day, req.params.title, function (err) {
             if (err) {
                 req.flash('error', err);
                 return res.redirect('/');
@@ -305,7 +351,6 @@ module.exports = function (app) {
                         });
                     }
                 });
-
             });
         });
     });
@@ -316,16 +361,40 @@ module.exports = function (app) {
                 req.flash('error', err);
                 return res.direct('/');
             }
-            res.render('tag', {
-                title: 'TAG:' + req.params.tag,
-                ctx: ctx,
-                tag: req.params.tag,
-                nav: 'tags',
-                articles: articles,
-                user: req.session.user,
-                success: req.flash('success').toString(),
-                error: req.flash('error').toString()
-            });
+            var tmp = 0;
+            if (articles.length) {
+                articles.forEach(function (article, index) {
+                    (function (article) {
+                        User.get(article.author, function (err, docs) {
+                            article.tx = docs[0].tx;
+                            tmp++;
+                            if (tmp == articles.length) {
+                                res.render('tag', {
+                                    title: 'TAG:' + req.params.tag,
+                                    ctx: ctx,
+                                    tag: req.params.tag,
+                                    nav: 'tags',
+                                    articles: articles,
+                                    user: req.session.user,
+                                    success: req.flash('success').toString(),
+                                    error: req.flash('error').toString()
+                                });
+                            }
+                        });
+                    })(article);
+                });
+            } else {
+                res.render('tag', {
+                    title: 'TAG:' + req.params.tag,
+                    ctx: ctx,
+                    tag: req.params.tag,
+                    nav: 'tags',
+                    articles: articles,
+                    user: req.session.user,
+                    success: req.flash('success').toString(),
+                    error: req.flash('error').toString()
+                });
+            }
         });
     });
 

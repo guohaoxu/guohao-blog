@@ -3,9 +3,11 @@ var MongoClient = require('mongodb').MongoClient,
     url = settings.url;
 
 function User(user) {
-    this.name = user.name;
+    this.username = user.username;
     this.password = user.password;
     this.email = user.email;
+    this.tx = 'default.jpg';
+    this.desc = user.desc;
 }
 
 module.exports = User;
@@ -13,9 +15,11 @@ module.exports = User;
 //存储新用户信息
 User.prototype.save = function (callback) {
     var user = {
-        name: this.name,
+        username: this.username,
         password: this.password,
-        email: this.email
+        email: this.email,
+        tx: this.tx,
+        desc: this.desc,
     };
     
     MongoClient.connect(url, function (err, db) {
@@ -38,7 +42,7 @@ User.get = function (username, callback) {
         if (err) {
             return callback(err);
         }
-        db.collection('users').find({name: username}).toArray(function(err, docs) {
+        db.collection('users').find({username: username}).toArray(function(err, docs) {
             db.close();
             if (err) {
                 return callback(err);
@@ -47,3 +51,27 @@ User.get = function (username, callback) {
         });
     });
 };
+
+//更新个人信息
+User.update = function (username, desc, tx, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) {
+            return callback(err);
+        }
+        var col = db.collection('users');
+        col.findOneAndUpdate({
+            username: username
+        }, {
+            $set: {
+                desc: desc
+            }
+        }, function (err, result) {
+            db.close();
+            if (err) {
+                return callback(err);
+            }
+            callback(null, result.value);
+        });
+    });
+}
+

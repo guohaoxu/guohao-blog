@@ -3,7 +3,7 @@
         <% article.comments.forEach(function (comment, index) { %>
         <ul class="list-group">
             <li class="list-group-item">
-                <p><a href="<%= comment.website %>"><%= comment.name %></a> <small>评论于：<%= comment.time %></small></p>
+                <p><a href="<%= comment.website %>"><%= comment.username %></a> <small>评论于：<%= comment.time %></small></p>
                 <p><%- comment.content %></p>
             </li>
         </ul>
@@ -13,25 +13,17 @@
         <% if (user) { %>
         <div class="form-group">
             <label for="pName">用户名:</label>
-            <input type="text" value="<%= user %>" class="form-control" id="pName" disabled>
-            <input type="hidden" name="name" value="<%= user %>">
-        </div>
-        <div class="form-group">
-            <label for="pEmail">邮箱:</label>
-            <input type="text" name="email" value="<%= user.email %>" class="form-control" id="pEmail">
+            <input type="text" value="<%= user.username %>" class="form-control" id="pName" disabled>
+            <input type="hidden" name="username" value="<%= user.username %>">
         </div>
         <div class="form-group">
             <label for="pWeb">网址:</label>
-            <input type="text" name="website" value="/u/<%= user %>" class="form-control" id="pWeb">
+            <input type="text" name="website" value="/u/<%= user.username %>" class="form-control" id="pWeb">
         </div>
         <% } else { %>
         <div class="form-group">
             <label for="pName">用户名:</label>
-            <input type="text" name="name" value="" class="form-control" id="pName" placeholder="用户名">
-        </div>
-        <div class="form-group">
-            <label for="pEmail">邮箱:</label>
-            <input type="text" name="email" value="" class="form-control" id="pEmail" placeholder="邮箱">
+            <input type="text" name="username" value="" class="form-control" id="pName" placeholder="用户名">
         </div>
         <div class="form-group">
             <label for="pWeb">网址:</label>

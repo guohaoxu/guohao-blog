@@ -2,18 +2,21 @@
 <% articles.forEach(function (article, index) { %>
 <div class="article-per">
     <div class="img-left wid64">
-        <a href="/u/<%= article.author %>"><img src="https://avatars2.githubusercontent.com/u/11919716?v=3&s=460" alt="#" class="img-responsive"></a>
+        <a href="/u/<%= article.author %>"><img src="<%= article.tx %>" alt="#" class="img-responsive"></a>
     </div>
     <div class="content-right">
         <div class="panel panel-default">
+            <div class="panel-heading"><a href="/u/<%= article.author %>"><%= article.author %></a></div>
             <div class="panel-body">
                 <div class="article-title"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></div>
                 <div class="clearfix"><%- article.content %></div>
                 <div><small>日期： <%= article.time.minute %></small></div>
             </div>
             <div class="panel-footer clearfix">
-                <div class="pull-left"><span class="glyphicon glyphicon-tags"></span>
-                    <% if (article.tags) { article.tags.forEach(function (tag, index) { %>
+                <div class="pull-left">
+                <% if (article.tags) { %>
+                    <span class="glyphicon glyphicon-tags"></span>
+                    <% article.tags.forEach(function (tag, index) { %>
                         <% if (tag) { %>
                         <a href="/tags/<%= tag %>"><%= tag %></a>
                         <% }  %>

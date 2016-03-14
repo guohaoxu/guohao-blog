@@ -1,14 +1,21 @@
 <%- include header %>
 <div class="article-per">
     <div class="panel panel-default">
+        <div class="panel-heading"><a href="/u/<%= article.author %>"><%= article.author %></a></div>
         <div class="panel-body">
-            <div class="article-title"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a></div>
+            <div class="article-title clearfix"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a>
+                <% if (user && user.username == article.author) { %>
+                <div class="pull-right"><a href="/edit/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">编辑</a> | <a href="/remove/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">删除</a></div>
+                <% } %>
+            </div>
             <div class="clearfix"><%- article.content %></div>
             <div><small>日期： <%= article.time.minute %></small></div>
         </div>
         <div class="panel-footer clearfix">
-            <div class="pull-left"><span class="glyphicon glyphicon-tags"></span>
-                <% if (article.tags) { article.tags.forEach(function (tag, index) { %>
+            <div class="pull-left">
+                <% if (article.tags) { %>
+                <span class="glyphicon glyphicon-tags"></span>
+                    <% article.tags.forEach(function (tag, index) { %>
                     <% if (tag) { %>
                     <a href="/tags/<%= tag %>"><%= tag %></a>
                     <% }  %>
