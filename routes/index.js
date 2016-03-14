@@ -202,9 +202,9 @@ module.exports = function (app) {
             error: req.flash('error').toString()
         });
     });
-    app.post('/upload', checkLogin, upload.array('imgfile'), function (req, res) {
-        req.flash('success', '文件上传成功！');
-        res.redirect('/');
+    app.post('/upload', checkLogin, upload.array('txFile'), function (req, res) {
+        //req.flash('success', '文件上传成功！');
+        //res.redirect('/');
     });
 
     app.get('/u/:author', function (req, res) {

@@ -1,10 +1,20 @@
 <%- include header %>
 <div class="row">
     <div class="col-sm-6 col-sm-offset-3">
+        <form id="txForm" method="post" action="/upload" enctype="multipart/form-data">
+            <label><input type="file" name="txFile" id="txUpload"></label>
+            <div id="upTip"></div>
+        </form>
         <form method="post" action="">
             <div class="panel panel-default">
                 <div class="panel-heading">设置</div>
                 <div class="panel-body">
+                    <div class="form-group">
+                        <label for="userDesc">个人头像：</label>
+                        <div class="clearfix"><img id="targetTx" src="<%= user.tx %>" alt="#" class="wid120 right20 img-circle">
+                            <button class="btn btn-default">修改头像</button>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label for="userDesc">个人描述：</label>
                         <textarea name="userdesc" class="form-control" id="userDesc" placeholder="<%= user.desc %>"></textarea>
@@ -15,4 +25,22 @@
         </form>
     </div>
 </div>
+<script src="/js/jquery.form.js"></script>
+<script>
+$(function () {
+    $("#txUpload").on("change", function () {
+        var url = "/104077_1383631256ZSN3.jpg";
+        $("#txForm").ajaxSubmit();
+        $("#upTip").html("上传中...");
+        $("body").append("<img id="tmpImg" src='" + url + "'");
+        $("#tmpImg").on('load', function () {
+            $("#tmpImg").hide();
+            $("#targetTx").attr("src", url);
+            $("body").remove("#tmpImg");
+        });
+        return false;
+    });
+});
+</script>
+
 <%- include footer %>

@@ -73,5 +73,5 @@ User.update = function (username, desc, tx, callback) {
             callback(null, result.value);
         });
     });
-}
+};
 
