@@ -162,6 +162,7 @@ module.exports = function (app) {
     });
 
     app.post('/set', checkLogin, function (req, res) {
+        console.log('---------2-------------');
         var desc = req.body.userdesc,
             username = req.session.user.username,
             x1 = req.body.x1,
@@ -170,7 +171,9 @@ module.exports = function (app) {
             imgSrc = req.body.imgSrc;
 
         var tx = req.body.imgSrcEnd;
-        User.update(username, desc, tx, function () {
+        console.log(tx + '----------------------');
+
+        User.update(username, desc, tx, function (err, result) {
             req.flash('success', '设置成功!');
             res.redirect('/u/' + username);
         });
@@ -189,7 +192,7 @@ module.exports = function (app) {
     app.post('/post', checkLogin, function (req, res) {
         var currentUser = req.session.user,
             tags = [req.body.tag1, req.body.tag2, req.body.tag3],
-            article = new Article(currentUser.username, req.body.title, tags, req.body.post);
+            article = new Article(currentUser.username, req.body.title, tags, req.body.content);
         article.save(function (err) {
             if (err) {
                 req.flash('error', err);

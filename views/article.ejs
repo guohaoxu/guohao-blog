@@ -5,7 +5,7 @@
         <div class="panel-body">
             <div class="article-title clearfix"><a href="/u/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><%= article.title %></a>
                 <% if (user && user.username == article.author) { %>
-                <div class="pull-right"><a href="/edit/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">编辑</a> | <a href="/remove/<%= article.author %>/<%= article.time.day %>/<%= article.title %>">删除</a></div>
+                <div class="pull-right user-article"><a href="/edit/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><span class="glyphicon glyphicon-edit"></span> 编辑</a> | <a href="/remove/<%= article.author %>/<%= article.time.day %>/<%= article.title %>"><span class="glyphicon glyphicon-remove"></span> 删除</a></div>
                 <% } %>
             </div>
             <div class="clearfix"><%- article.content %></div>

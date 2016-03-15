@@ -17,7 +17,7 @@
                 <form method="post" action="">
                     <div class="form-group">
                         <label for="userDesc">个人描述：</label>
-                        <textarea name="userdesc" class="form-control" id="userDesc" placeholder="<%= user.desc %>"></textarea>
+                        <textarea name="userdesc" class="form-control" id="userDesc"><%= user.desc %></textarea>
                         <input type="hidden" name="x1" id="hiddenX1">
                         <input type="hidden" name="y1" id="hiddenY1">
                         <input type="hidden" name="WH" id="hiddenWh">
@@ -34,43 +34,44 @@
 <script src="/js/jquery.imgcrop.dev.js"></script>
 <script>
 $(function () {
-    $("#txUpload").on("change", function () {
+    $("#txUpload").on("change", onChange);
+    function onChange() {
+        $("#txUpload").off("change", onChange);
         var tmpStr = $(this).val(),
             str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length),
             url = "/" + $("#txUpload").attr("data-user") + "_tmp_" + str + "?v=" + Math.random();
-        $("#hiddenImgSrc").val(url);
-        $("#hiddenImgSrcEnd").val("/" + $("#txUpload").attr("data-user") + str);
-        $("#txForm").ajaxSubmit();
-        $("#upTip").show().find(".upTipTxt").html("上传中...");
         var tmpImg = new Image();
         tmpImg.onload = function () {
-            setTimeout(function () {
-                $("#upTip").hide();
-                $(".imgTx img").attr("src", url);
-                $(".imgcropTarget img").attr("src", url);
-                $(".imgcropTarget").slideDown(400, function () {
-                    $(this).find("img").imgcrop("destroy").imgcrop({
-                        init: true,
-                        views: [
-                            {
-                                view: ".imgTx img",
-                                view_WH: 120
-                            }
-                        ],
-                        onSelectChange: function () {
-                            $("#hiddenX1").val($(".imgcropTarget img").data("imgcrop_x1"));
-                            $("#hiddenY1").val($(".imgcropTarget img").data("imgcrop_y1"));
-                            $("#hiddenWh").val($(".imgcropTarget img").data("imgcrop_WH"));
+            $("#txUpload").on("change", onChange);
+            $("#upTip").hide();
+            $(".imgTx img").attr("src", url);
+            $(".imgcropTarget img").attr("src", url);
+            $(".imgcropTarget").slideDown(400, function () {
+                $(this).find("img").imgcrop("destroy").imgcrop({
+                    init: true,
+                    views: [
+                        {
+                            view: ".imgTx img",
+                            view_WH: 120
                         }
-                    });
-                })
-            }, 1500);
-
+                    ],
+                    onSelectChange: function () {
+                        $("#hiddenX1").val($(".imgcropTarget img").data("imgcrop_x1"));
+                        $("#hiddenY1").val($(".imgcropTarget img").data("imgcrop_y1"));
+                        $("#hiddenWh").val($(".imgcropTarget img").data("imgcrop_WH"));
+                    }
+                });
+            });
         };
         tmpImg.src = url;
 
+        $("#hiddenImgSrc").val(url);
+        $("#hiddenImgSrcEnd").val($("#txUpload").attr("data-user") + str);
+        $("#txForm").ajaxSubmit();
+        $("#upTip").show().find(".upTipTxt").html("上传中...");
+
         return false;
-    });
+    };
 
 
 

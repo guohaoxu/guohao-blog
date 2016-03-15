@@ -63,7 +63,8 @@ User.update = function (username, desc, tx, callback) {
             username: username
         }, {
             $set: {
-                desc: desc
+                desc: desc,
+                tx: tx
             }
         }, function (err, result) {
             db.close();

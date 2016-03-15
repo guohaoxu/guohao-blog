@@ -19,7 +19,6 @@
     "ejs": "^2.3.4",
     "express": "^4.13.3",
     "express-session": "^1.13.0",
-    "gm": "^1.21.1",
     "markdown": "^0.5.0",
     "mongodb": "^2.1.4",
     "morgan": "^1.6.1",
