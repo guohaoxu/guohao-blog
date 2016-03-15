@@ -165,13 +165,17 @@ module.exports = function (app) {
         var desc = req.body.userdesc,
             username = req.session.user.username,
             tx = req.body.imgSrc;
-        User.update(username, desc, tx, function (err, result) {
+        User.update(username, desc, tx, function (err) {
+            if (err) {
+                req.flash('error', err);
+                return res.redirect('/');
+            }
             req.flash('success', '设置成功!');
             req.session.user.desc = desc;
             if (tx) {
                 req.session.user.tx = tx;
             }
-            res.redirect('/u/' + username);
+            res.redirect('/u/' + encodeURI(username));
         });
     });
 
@@ -202,6 +206,7 @@ module.exports = function (app) {
     app.post('/upload', checkLogin, upload.array('txFile'), function (req, res) {
         //req.flash('success', '文件上传成功！');
         //res.redirect('/');
+        res.end();
     });
 
     app.get('/u/:author', function (req, res) {

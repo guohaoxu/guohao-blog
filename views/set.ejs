@@ -17,7 +17,7 @@
                     <div class="form-group">
                         <label for="userDesc">个人描述：</label>
                         <textarea name="userdesc" class="form-control" id="userDesc"><%= user.desc %></textarea>
-                        <input type="hidden" name="imgSrc" id="hiddenImgSrc">
+                        <input type="hidden" name="imgSrc" id="hiddenImgSrc" value="">
                     </div>
                     <button type="submit" class="btn btn-default">保存</button>
                 </form>
@@ -33,7 +33,7 @@ $(function () {
 
         var tmpStr = $(this).val(),
             str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length),
-            url = $("#txUpload").attr("data-user") + str,
+            url = encodeURI($("#txUpload").attr("data-user")) + str,
             urlRandom = "/" + url + "?v=" + Math.random(),
             tmpImg = new Image(),
             timeoutId;
