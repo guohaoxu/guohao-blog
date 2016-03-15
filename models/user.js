@@ -39,12 +39,16 @@ User.prototype.save = function (callback) {
 //读取用户信息
 User.get = function (username, callback) {
     MongoClient.connect(url, function (err, db) {
+
+
         if (err) {
+            console.log('-----3-----');
             return callback(err);
         }
         db.collection('users').find({username: username}).toArray(function(err, docs) {
             db.close();
             if (err) {
+                console.log('-----4-----');
                 return callback(err);
             }
             callback(null, docs);

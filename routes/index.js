@@ -133,6 +133,7 @@ module.exports = function (app) {
             });
         User.get(newUser.username, function (err, docs) {
             if (err) {
+                console.log('----------');
                 req.flash('error', err);
                 return res.redirect('/reg');
             }
@@ -142,6 +143,7 @@ module.exports = function (app) {
             }
             newUser.save(function (err, result) {
                 if (err) {
+                console.log('-----2-----');
                     req.flash('error', err);
                     return res.redirect('/reg');
                 }
