@@ -8,7 +8,9 @@ var crypto = require('crypto'),
             cb(null, 'uploads/');
         },
         filename: function (req, file, cb) {
-            cb(null, file.originalname );
+            var tmpStr = file.originalname;
+            var str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length);
+            cb(null, req.session.user.username + '_tmp_' + str);
         }
     }),
     upload = multer({ storage: storage }),
@@ -161,8 +163,14 @@ module.exports = function (app) {
 
     app.post('/set', checkLogin, function (req, res) {
         var desc = req.body.userdesc,
-            username = req.session.user.username;
-        User.update(username, desc, null, function () {
+            username = req.session.user.username,
+            x1 = req.body.x1,
+            y1 = req.body.y1,
+            wh = req.body.WH,
+            imgSrc = req.body.imgSrc;
+
+        var tx = req.body.imgSrcEnd;
+        User.update(username, desc, tx, function () {
             req.flash('success', '设置成功!');
             res.redirect('/u/' + username);
         });
