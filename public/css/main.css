@@ -100,18 +100,11 @@ textarea {
   margin-right: 20px;
 }
 .imgTx {
-  position: relative;
-  z-index: 0;
   width: 120px;
-  height: 120px;
   margin-bottom: 10px;
-  overflow: hidden;
-  border-radius: 50%;
 }
 .imgTx img {
-  position: absolute;
-  top: 0;
-  left: 0;
+  width: 120px;
 }
 .imgcropTarget {
   display: none;

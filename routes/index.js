@@ -10,7 +10,7 @@ var crypto = require('crypto'),
         filename: function (req, file, cb) {
             var tmpStr = file.originalname;
             var str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length);
-            cb(null, req.session.user.username + '_tmp_' + str);
+            cb(null, req.session.user.username + str);
         }
     }),
     upload = multer({ storage: storage }),
@@ -162,19 +162,15 @@ module.exports = function (app) {
     });
 
     app.post('/set', checkLogin, function (req, res) {
-        console.log('---------2-------------');
         var desc = req.body.userdesc,
             username = req.session.user.username,
-            x1 = req.body.x1,
-            y1 = req.body.y1,
-            wh = req.body.WH,
-            imgSrc = req.body.imgSrc;
-
-        var tx = req.body.imgSrcEnd;
-        console.log(tx + '----------------------');
-
+            tx = req.body.imgSrc;
         User.update(username, desc, tx, function (err, result) {
             req.flash('success', '设置成功!');
+            req.session.user.desc = desc;
+            if (tx) {
+                req.session.user.tx = tx;
+            }
             res.redirect('/u/' + username);
         });
     });
@@ -203,16 +199,6 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/upload', checkLogin, function (req, res) {
-        res.render('upload', {
-            title: '文件上传',
-            ctx: ctx,
-            nav: 'upload',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
-        });
-    });
     app.post('/upload', checkLogin, upload.array('txFile'), function (req, res) {
         //req.flash('success', '文件上传成功！');
         //res.redirect('/');
@@ -431,16 +417,7 @@ module.exports = function (app) {
         });
     });
 
-    app.get('/links', function (req, res) {
-        res.render('links', {
-            title: '友情链接',
-            ctx: ctx,
-            nav: 'links',
-            user: req.session.user,
-            success: req.flash('success').toString(),
-            error: req.flash('error').toString()
-        });
-    });
+
 
     function checkLogin(req, res, next) {
         if (!req.session.user) {

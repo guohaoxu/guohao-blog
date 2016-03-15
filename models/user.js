@@ -59,20 +59,37 @@ User.update = function (username, desc, tx, callback) {
             return callback(err);
         }
         var col = db.collection('users');
-        col.findOneAndUpdate({
-            username: username
-        }, {
-            $set: {
-                desc: desc,
-                tx: tx
-            }
-        }, function (err, result) {
-            db.close();
-            if (err) {
-                return callback(err);
-            }
-            callback(null, result.value);
-        });
+        if (tx) {
+            col.findOneAndUpdate({
+                username: username
+            }, {
+                $set: {
+                    desc: desc,
+                    tx: tx
+                }
+            }, function (err, result) {
+                db.close();
+                if (err) {
+                    return callback(err);
+                }
+                callback(null, result.value);
+            });
+        } else {
+            col.findOneAndUpdate({
+                username: username
+            }, {
+                $set: {
+                    desc: desc
+                }
+            }, function (err, result) {
+                db.close();
+                if (err) {
+                    return callback(err);
+                }
+                callback(null, result.value);
+            });
+        }
+
     });
 };
 

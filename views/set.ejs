@@ -8,8 +8,7 @@
 
                     <div class="form-group">
                         <label for="userDesc">个人头像：</label>
-                        <div class="imgcropTarget"><img src="" alt="" class="img-responsive"></div>
-                        <div class="imgTx clearfix"><img src="<%= user.tx %>" alt="#"></div>
+                        <div class="imgTx"><img src="/<%= user.tx %>" alt="#" class="img-rounded"></div>
                         <label class="btn btn-default openFile">修改头像<input type="file" name="txFile" id="txUpload" data-user="<%= user.username %>"></label>
                         <div id="upTip"><span class="glyphicon glyphicon-refresh"></span> <span class="upTipTxt"></span></div>
                     </div>
@@ -18,11 +17,7 @@
                     <div class="form-group">
                         <label for="userDesc">个人描述：</label>
                         <textarea name="userdesc" class="form-control" id="userDesc"><%= user.desc %></textarea>
-                        <input type="hidden" name="x1" id="hiddenX1">
-                        <input type="hidden" name="y1" id="hiddenY1">
-                        <input type="hidden" name="WH" id="hiddenWh">
                         <input type="hidden" name="imgSrc" id="hiddenImgSrc">
-                        <input type="hidden" name="imgSrcEnd" id="hiddenImgSrcEnd">
                     </div>
                     <button type="submit" class="btn btn-default">保存</button>
                 </form>
@@ -31,49 +26,34 @@
     </div>
 </div>
 <script src="/js/jquery.form.js"></script>
-<script src="/js/jquery.imgcrop.dev.js"></script>
 <script>
 $(function () {
-    $("#txUpload").on("change", onChange);
-    function onChange() {
-        $("#txUpload").off("change", onChange);
+    $("#txUpload").on("change", function () {
+
+
         var tmpStr = $(this).val(),
             str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length),
-            url = "/" + $("#txUpload").attr("data-user") + "_tmp_" + str + "?v=" + Math.random();
-        var tmpImg = new Image();
-        tmpImg.onload = function () {
-            $("#txUpload").on("change", onChange);
-            $("#upTip").hide();
-            $(".imgTx img").attr("src", url);
-            $(".imgcropTarget img").attr("src", url);
-            $(".imgcropTarget").slideDown(400, function () {
-                $(this).find("img").imgcrop("destroy").imgcrop({
-                    init: true,
-                    views: [
-                        {
-                            view: ".imgTx img",
-                            view_WH: 120
-                        }
-                    ],
-                    onSelectChange: function () {
-                        $("#hiddenX1").val($(".imgcropTarget img").data("imgcrop_x1"));
-                        $("#hiddenY1").val($(".imgcropTarget img").data("imgcrop_y1"));
-                        $("#hiddenWh").val($(".imgcropTarget img").data("imgcrop_WH"));
-                    }
-                });
-            });
-        };
-        tmpImg.src = url;
+            url = $("#txUpload").attr("data-user") + str,
+            urlRandom = "/" + url + "?v=" + Math.random(),
+            tmpImg = new Image(),
+            timeoutId;
 
-        $("#hiddenImgSrc").val(url);
-        $("#hiddenImgSrcEnd").val($("#txUpload").attr("data-user") + str);
-        $("#txForm").ajaxSubmit();
+        tmpImg.onload = function () {
+            //clearTimeout(timeoutId);
+            //timeoutId = setTimeout(function () {
+                $("#upTip").hide();
+                $(".imgTx img").attr("src", urlRandom);
+                $("#hiddenImgSrc").val(url);
+            //}, 1500);
+        };
+        tmpImg.src = urlRandom;
+
         $("#upTip").show().find(".upTipTxt").html("上传中...");
 
+        $("#txForm").ajaxSubmit();
         return false;
-    };
 
-
+    });
 
 });
 </script>
