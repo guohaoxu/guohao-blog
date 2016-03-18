@@ -5,7 +5,7 @@ var crypto = require('crypto'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
-            cb(null, 'uploads/');
+            cb(null, 'uploads');
         },
         filename: function (req, file, cb) {
             var tmpStr = file.originalname;
@@ -133,7 +133,6 @@ module.exports = function (app) {
             });
         User.get(newUser.username, function (err, docs) {
             if (err) {
-                console.log('----------');
                 req.flash('error', err);
                 return res.redirect('/reg');
             }
@@ -143,7 +142,6 @@ module.exports = function (app) {
             }
             newUser.save(function (err, result) {
                 if (err) {
-                console.log('-----2-----');
                     req.flash('error', err);
                     return res.redirect('/reg');
                 }
@@ -205,9 +203,8 @@ module.exports = function (app) {
         });
     });
 
-    app.post('/upload', checkLogin, upload.array('txFile'), function (req, res) {
-        //req.flash('success', '文件上传成功！');
-        //res.redirect('/');
+    app.post('/upload', checkLogin, upload.single('avatar'), function (req, res) {
+        //console.log(util.inspect(req.file));
         res.end();
     });
 

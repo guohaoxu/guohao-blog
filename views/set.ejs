@@ -9,7 +9,7 @@
                     <div class="form-group">
                         <label for="userDesc">个人头像：</label>
                         <div class="imgTx"><img src="/<%= user.tx %>" alt="#" class="img-rounded"></div>
-                        <label class="btn btn-default openFile">修改头像<input type="file" name="txFile" id="txUpload" data-user="<%= user.username %>"></label>
+                        <label class="btn btn-default openFile">修改头像<input type="file" name="avatar" id="txUpload" data-user="<%= user.username %>"></label>
                         <div id="upTip"><span class="glyphicon glyphicon-refresh"></span> <span class="upTipTxt"></span></div>
                     </div>
                 </form>
@@ -30,29 +30,26 @@
 $(function () {
     $("#txUpload").on("change", function () {
 
-
         var tmpStr = $(this).val(),
             str = tmpStr.slice(tmpStr.indexOf('.'), tmpStr.length),
             url = encodeURI($("#txUpload").attr("data-user")) + str,
             urlRandom = "/" + url + "?v=" + Math.random(),
-            tmpImg = new Image(),
-            timeoutId;
-
-        tmpImg.onload = function () {
-            //clearTimeout(timeoutId);
-            //timeoutId = setTimeout(function () {
-                $("#upTip").hide();
-                $(".imgTx img").attr("src", urlRandom);
-                $("#hiddenImgSrc").val(url);
-            //}, 1500);
-        };
-        tmpImg.src = urlRandom;
-
-        $("#upTip").show().find(".upTipTxt").html("上传中...");
+            img = new Image(),
+            checkLoad = setInterval(checkLoadFun, 200);
 
         $("#txForm").ajaxSubmit();
-        return false;
+        $("#upTip").show().find(".upTipTxt").html("上传中...");
 
+        img.src = urlRandom;
+        function checkLoadFun() {
+            if (img.readyState == "complete" || img.readyState == "loaded" || img.complete) {
+                clearInterval(checkLoad);
+                $("#upTip").hide();
+                $(".imgTx img").attr("src", ("/" + url + "?v=" + Math.random())).hide().fadeIn();
+                $("#hiddenImgSrc").val(url);
+            }
+        }
+        return false;
     });
 
 });

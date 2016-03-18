@@ -37,8 +37,8 @@ app.use(logger('dev'));
 
 app.use(flash());
 
-app.use(express.static(path.join(__dirname, '/public')));
-app.use(express.static(path.join(__dirname, '/uploads')));
+app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './uploads')));
 
 routes(app);
 
