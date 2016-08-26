@@ -18,10 +18,11 @@ User.prototype.save = function (callback) {
         username: this.username,
         password: this.password,
         email: this.email,
+        githubId: this.githubId,
         tx: this.tx,
         desc: this.desc,
     };
-    
+
     MongoClient.connect(url, function (err, db) {
         if (err) {
            return callback(err);
@@ -36,11 +37,29 @@ User.prototype.save = function (callback) {
     });
 };
 
+User.findOrCreate = function (query, callback) {
+  MongoClient.connect(url, function (err, db) {
+    if (err) return callback(err);
+    db.collection('users').find(query).toArray(function(err, docs) {
+
+      if (err) {
+        db.close();
+        return callback(err);
+      }
+      if (!docs.length) {
+        db.collection('users').insertOne(query, function (err, r) {
+          db.close()
+          return callback(null, r)
+        })
+      }
+      callback(null, docs[0]);
+    });
+  });
+}
+
 //读取用户信息
 User.get = function (username, callback) {
     MongoClient.connect(url, function (err, db) {
-
-
         if (err) {
             console.log('-----3-----');
             return callback(err);
@@ -96,4 +115,3 @@ User.update = function (username, desc, tx, callback) {
 
     });
 };
-

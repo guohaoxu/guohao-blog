@@ -1,0 +1,132 @@
+[Sat Aug 27 2016 02:05:35 GMT+0800 (中国标准时间)] /errorLogs
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:59:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at SendStream.error (E:\Github\guohao-blog\node_modules\serve-static\index.js:121:7)
+    at emitOne (events.js:96:13)
+    at SendStream.emit (events.js:188:7)
+    at SendStream.error (E:\Github\guohao-blog\node_modules\send\index.js:275:17)
+[Sat Aug 27 2016 02:34:10 GMT+0800 (中国标准时间)] /login/github/callback?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https%3A%2F%2Fdeveloper.github.com%2Fv3%2Foauth%2F%23redirect-uri-mismatch
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:131:25)
+    at attempt (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:348:16)
+    at authenticate (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:349:7)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at Route.dispatch (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:277:22
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+[Sat Aug 27 2016 02:39:47 GMT+0800 (中国标准时间)] /login/github/callback?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https%3A%2F%2Fdeveloper.github.com%2Fv3%2Foauth%2F%23redirect-uri-mismatch
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:131:25)
+    at attempt (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:348:16)
+    at authenticate (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:349:7)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at Route.dispatch (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:277:22
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+[Sat Aug 27 2016 02:41:31 GMT+0800 (中国标准时间)] /login/github/callback?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https%3A%2F%2Fdeveloper.github.com%2Fv3%2Foauth%2F%23redirect-uri-mismatch
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:131:25)
+    at attempt (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:348:16)
+    at authenticate (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:349:7)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at Route.dispatch (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:277:22
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+[Sat Aug 27 2016 02:51:09 GMT+0800 (中国标准时间)] /login/github/callback?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https%3A%2F%2Fdeveloper.github.com%2Fv3%2Foauth%2F%23redirect-uri-mismatch
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:131:25)
+    at attempt (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:348:16)
+    at authenticate (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:349:7)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at Route.dispatch (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:277:22
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+[Sat Aug 27 2016 02:55:01 GMT+0800 (中国标准时间)] /login/github/callback?code=ef8cfd82a1cc5d134502
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at Strategy._verify (E:\Github\guohao-blog\app.js:58:3)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:193:24
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:174:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+[Sat Aug 27 2016 02:55:23 GMT+0800 (中国标准时间)] /login/github/callback?code=438d52235dbf8f3a4111
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at Strategy._verify (E:\Github\guohao-blog\app.js:58:3)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:193:24
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:174:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+[Sat Aug 27 2016 03:00:18 GMT+0800 (中国标准时间)] /login/github/callback?code=c4c8f69f4eab44ae4295
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at Strategy._verify (E:\Github\guohao-blog\app.js:58:10)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:193:24
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:174:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+[Sat Aug 27 2016 03:25:43 GMT+0800 (中国标准时间)] /login/github/callback?code=4fe51b27d7662d2bf915
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:52:18
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\collection.js:416:18
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at Object.cb (E:\Github\guohao-blog\node_modules\mongodb\lib\collection.js:711:5)
+[Sat Aug 27 2016 03:26:18 GMT+0800 (中国标准时间)] /login/github/callback?code=999623a81138a51d3d2c
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:55:7
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)
+[Sat Aug 27 2016 03:28:59 GMT+0800 (中国标准时间)] /login/github/callback?code=3f1ec41d59ef3217e9f1
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:55:7
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)

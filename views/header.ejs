@@ -16,7 +16,6 @@
           <script src="/js/html5shiv.min.js"></script>
           <script src="/js/respond.min.js"></script>
         <![endif]-->
-        <script src="//localhost:35729/livereload.js"></script>
     </head>
     <body>
         <nav class="navbar navbar-default">
@@ -54,8 +53,8 @@
                     </ul>
                     <% } else { %>
                     <ul class="nav navbar-nav navbar-right">
-                        <li><a href="/login" <% if (nav=="login") { %> class="cur" <% } %>>登 录</a></li>
-                        <li><a href="/reg" <% if (nav=="reg") { %> class="cur" <% } %>>注 册</a></li>
+                        <li <% if (nav=="login") { %> class="active" <% } %>><a href="/login">登 录</a></li>
+                        <li <% if (nav=="reg") { %> class="active" <% } %>><a href="/reg">注 册</a></li>
                     <% } %>
                 </div>
             </div>

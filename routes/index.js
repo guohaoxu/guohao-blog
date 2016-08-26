@@ -3,6 +3,8 @@ var crypto = require('crypto'),
     Article = require('../models/article.js'),
     Comment = require('../models/comment.js'),
     multer = require('multer'),
+    passport = require('passport'),
+    GithubStrategy= require('passport-github').Strategy,
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, 'uploads');
@@ -23,6 +25,23 @@ module.exports = function (app) {
     } else {
         ctx = "http://static.guohaoxu.com";
     }
+
+  passport.use(new GithubStrategy({
+    clientID: '945b550396ae11844a1a',
+    clientSecret: 'f093613f65901568ef4767a11ce769235a11037d',
+    callbackURL: "http://localhost:3001/login/github/callback"
+  }, function (accessToken, refreshToken, profile, cb) {
+    User.findOrCreate({ githubId: profile.id }, function (err, user) {
+      return cb(err, user);
+    });
+  }))
+
+  app.get('/login/github', passport.authenticate("github"));
+  app.get('/login/github/callback',
+    passport.authenticate('github', { failureRedirect: '/login'}),
+    function (req, res) {
+      res.redirect('/')
+  })
 
 	app.get('/', function (req, res) {
         var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -336,6 +355,16 @@ module.exports = function (app) {
             }
             tags.tagNames = tagNames;
             var tmp = 0;
+            if (!tagNames.length) {
+              return res.render('tags', {
+                  ctx: ctx,
+                  nav: 'tags',
+                  tags: tags,
+                  user: req.session.user,
+                  success: req.flash('success').toString(),
+                  error: req.flash('error').toString()
+              });
+            }
             tagNames.forEach(function (tagName, index) {
                 Article.getTag(tagName, function (err, articles) {
                     tags.num[index] = articles.length;
