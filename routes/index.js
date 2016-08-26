@@ -4,7 +4,7 @@ var crypto = require('crypto'),
     Comment = require('../models/comment.js'),
     multer = require('multer'),
     passport = require('passport'),
-    GithubStrategy= require('passport-github').Strategy,
+    GithubStrategy = require('passport-github').Strategy,
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, 'uploads');
@@ -38,9 +38,8 @@ module.exports = function (app) {
 
   app.get('/login/github', passport.authenticate("github"));
   app.get('/login/github/callback',
-    passport.authenticate('github', { failureRedirect: '/login'}),
-    function (req, res) {
-      res.redirect('/')
+    passport.authenticate('github'), function (req, res) {
+    res.redirect('/')
   })
 
 	app.get('/', function (req, res) {

@@ -130,3 +130,51 @@ Error: Failed to serialize user into session
     at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
     at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
     at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)
+[Sat Aug 27 2016 03:29:17 GMT+0800 (中国标准时间)] /login/github/callback?code=56f39beba4cb65ca915d
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:55:7
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)
+[Sat Aug 27 2016 03:37:37 GMT+0800 (中国标准时间)] /login/github/callback?code=ae6896f5bfa145646d7c
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:55:7
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)
+[Sat Aug 27 2016 03:37:42 GMT+0800 (中国标准时间)] /login/github/callback?code=ae6896f5bfa145646d7c
+TokenError: The code passed is incorrect or expired.
+    at Strategy.OAuth2Strategy.parseErrorResponse (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:320:12)
+    at Strategy.OAuth2Strategy._createOAuthError (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:367:16)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:166:45
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:77:16
+    at E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:195:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+[Sat Aug 27 2016 03:37:53 GMT+0800 (中国标准时间)] /login/github/callback?code=e282376ab5ac5ee9d932
+Error: Failed to serialize user into session
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:271:19)
+    at Authenticator.serializeUser (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:289:5)
+    at IncomingMessage.req.login.req.logIn (E:\Github\guohao-blog\node_modules\passport\lib\http\request.js:50:29)
+    at Strategy.strategy.success (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:235:13)
+    at verified (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:177:20)
+    at E:\Github\guohao-blog\routes\index.js:35:14
+    at E:\Github\guohao-blog\models\user.js:55:7
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb\lib\utils.js:96:12)
+    at E:\Github\guohao-blog\node_modules\mongodb\lib\cursor.js:844:16
+    at handleCallback (E:\Github\guohao-blog\node_modules\mongodb-core\lib\cursor.js:156:5)
