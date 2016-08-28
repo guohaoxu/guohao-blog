@@ -210,6 +210,7 @@ module.exports = function (app) {
                 articles.tx = docs[0].tx;
                 articles.author = docs[0].username;
                 articles.desc = docs[0].desc;
+                console.log(docs[0], 'aaa')
                 res.render('user', {
                     title: '这是' + docs[0].name + '的主页',
                     ctx: ctx,

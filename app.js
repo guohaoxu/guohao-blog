@@ -160,7 +160,7 @@ app.get('/auth/github/callback',
   function (req, res) {
     console.log(req.user)
     req.session.user =  req.user
-    res.redirect('/users/' + req.user.username)
+    res.redirect('/u/' + req.user.username)
   }
 )
 
