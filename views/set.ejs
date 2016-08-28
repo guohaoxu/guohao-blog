@@ -7,7 +7,7 @@
                 <form id="txForm" method="post" action="/upload" enctype="multipart/form-data">
                     <div class="form-group">
                         <label for="userDesc">个人头像：</label>
-                        <div class="imgTx"><img src="/<%= user.tx %>" alt="#" class="img-rounded"></div>
+                        <div class="imgTx"><img src="<%= user.tx %>" alt="#" class="img-rounded"></div>
                         <label class="btn btn-default openFile">修改头像<input type="file" name="avatar" id="txUpload" data-user="<%= user.username %>"></label>
                         <div id="upTip"><span class="glyphicon glyphicon-refresh"></span> <span class="upTipTxt"></span></div>
                     </div>

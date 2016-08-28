@@ -57,6 +57,16 @@ User.findOrCreate = function (query, callback) {
   });
 }
 
+User.findByUsername = function (username, callback) {
+    MongoClient.connect(url, function (err, db) {
+        if (err) return callback(err);
+        db.collection('users').find({username: username}).toArray(function(err, docs) {
+            db.close();
+            if (err)  return callback(err);
+            callback(null, docs[0]);
+        });
+    });
+};
 
 //读取用户信息
 User.get = function (username, callback) {
@@ -66,16 +76,6 @@ User.get = function (username, callback) {
             db.close();
             if (err)  return callback(err);
             callback(null, docs);
-        });
-    });
-};
-User.findByUsername = function (username, callback) {
-    MongoClient.connect(url, function (err, db) {
-        if (err) return callback(err);
-        db.collection('users').find({username: username}).toArray(function(err, docs) {
-            db.close();
-            if (err)  return callback(err);
-            callback(null, docs[0]);
         });
     });
 };
