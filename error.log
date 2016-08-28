@@ -1458,3 +1458,15 @@ Error: Can't set headers after they are sent.
     at complete (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:250:13)
     at E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:257:15
     at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:421:14)
+[Sun Aug 28 2016 18:21:55 GMT+0800 (中国标准时间)] /auth/github/callback?error=redirect_uri_mismatch&error_description=The+redirect_uri+MUST+match+the+registered+callback+URL+for+this+application.&error_uri=https%3A%2F%2Fdeveloper.github.com%2Fv3%2Foauth%2F%23redirect-uri-mismatch
+AuthorizationError: The redirect_uri MUST match the registered callback URL for this application.
+    at Strategy.OAuth2Strategy.authenticate (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:131:25)
+    at attempt (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:348:16)
+    at authenticate (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:349:7)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at Route.dispatch (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:112:3)
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:277:22
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)

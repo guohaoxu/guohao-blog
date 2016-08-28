@@ -102,7 +102,8 @@ passport.use(new GithubStrategy({
     username: profile.username,
     displayName: profile.displayName,
     email: profile.emails[0].value,
-    tx: profile.photos[0].value
+    tx: profile.photos[0].value,
+    token: accessToken
   }, function (err, user) {
     // user.accessToken = accessToken
     console.log(user, '-----')
