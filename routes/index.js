@@ -3,8 +3,6 @@ var crypto = require('crypto'),
     Article = require('../models/article.js'),
     Comment = require('../models/comment.js'),
     multer = require('multer'),
-    passport = require('passport'),
-    GithubStrategy = require('passport-github').Strategy,
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
             cb(null, 'uploads');
@@ -26,21 +24,7 @@ module.exports = function (app) {
         ctx = "http://static.guohaoxu.com";
     }
 
-  passport.use(new GithubStrategy({
-    clientID: '945b550396ae11844a1a',
-    clientSecret: 'f093613f65901568ef4767a11ce769235a11037d',
-    callbackURL: "http://localhost:3001/login/github/callback"
-  }, function (accessToken, refreshToken, profile, cb) {
-    User.findOrCreate({ githubId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }))
 
-  app.get('/login/github', passport.authenticate("github"));
-  app.get('/login/github/callback',
-    passport.authenticate('github'), function (req, res) {
-    res.redirect('/')
-  })
 
 	app.get('/', function (req, res) {
         var page = req.query.p ? parseInt(req.query.p) : 1;
@@ -99,23 +83,7 @@ module.exports = function (app) {
             error: req.flash('error').toString()
         });
     });
-    app.post('/login', checkNotLogin, function (req, res) {
-        var md5 = crypto.createHash('md5'),
-            password = md5.update(req.body.password).digest('hex');
-        User.get(req.body.username, function (err, docs) {
-            if (!docs.length) {
-                req.flash('error', '用户名不存在！');
-                return res.redirect('/login');
-            }
-            if (docs[0].password != password) {
-                req.flash('error', '密码错误！');
-                return res.redirect('/login');
-            }
-            req.session.user = docs[0];
-            req.flash('success', '登录成功!');
-            res.redirect('/');
-        });
-    });
+
 
     app.get('/logout', checkLogin, function (req, res) {
         req.session.user = null;
@@ -154,6 +122,7 @@ module.exports = function (app) {
                 req.flash('error', err);
                 return res.redirect('/reg');
             }
+            console.log(docs)
             if (docs.length) {
                 req.flash('error', '用户名已存在！');
                 return res.redirect('/reg');

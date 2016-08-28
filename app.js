@@ -10,13 +10,18 @@ var express = require('express'),
 
     routes = require('./routes/index'),
     settings = require('./settings'),
+    User = require('./models/user')
 
     fs = require('fs'),
     accessLog = fs.createWriteStream(path.join(__dirname, 'access.log'), {flags: 'a', encoding: 'utf8'}),
     errorLog = fs.createWriteStream(path.join(__dirname, 'error.log'), {flags: 'a', encoding: 'utf8'}),
 
     app = express(),
-    passport = require('passport');
+
+    User = require('./models/user.js'),
+    passport = require('passport'),
+    LocalStrategy = require('passport-local').Strategy,
+    GithubStrategy = require('passport-github').Strategy;
 
 app.set('port', process.env.PORT || 3001);
 
@@ -42,13 +47,92 @@ app.use(session({
 app.use(logger('dev'));
 app.use(logger({stream: accessLog}));
 
-app.use(flash());
+
 
 app.use(express.static(path.join(__dirname, './public')));
 app.use(express.static(path.join(__dirname, './uploads')));
 
-app.use(passport.initialize());
+passport.use('local', new LocalStrategy(
+  function (username, password, done) {
+    var user = {
+      id: '1',
+      username: 'admin',
+      password: 'pass'
+    }; // 可以配置通过数据库方式读取登陆账号
 
+    if (username !== user.username) {
+      return done(null, false, { message: 'Incorrect username.' });
+    }
+    if (password !== user.password) {
+      return done(null, false, { message: 'Incorrect password.' });
+    }
+
+    return done(null, user);
+  }
+));
+passport.use(new GithubStrategy({
+  clientID: '945b550396ae11844a1a',
+  clientSecret: 'f093613f65901568ef4767a11ce769235a11037d',
+  callbackURL: 'http://localhost:3001/auth/github/callback'
+}, function (accessToken, refreshToken, profile, cb) {
+  cb(null, profile)
+  // User.findOrCreate({ githubId: profile.id }, function (err, user) {
+  //   user.accessToken = accessToken
+  //   console.log(user, '-----')
+  //   return cb(err, user);
+  // });
+}))
+passport.serializeUser(function (user, done) {//保存user对象
+  done(null, user.username);
+  // done(null, user);//可以通过数据库方式操作
+});
+
+passport.deserializeUser(function (user, done) {//删除user对象
+  User.get(username, function (err, user) {
+    done(err, user);
+  });
+  // done(null, user);//可以通过数据库方式操作
+});
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(flash());
+
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/users',
+    failureRedirect: '/'
+  }));
+
+app.post('/login', passport.authenticate('local'), function (req, res) {
+    var md5 = crypto.createHash('md5'),
+        password = md5.update(req.body.password).digest('hex');
+    User.get(req.body.username, function (err, docs) {
+        if (!docs.length) {
+            req.flash('error', '用户名不存在！');
+            return res.redirect('/login');
+        }
+        if (docs[0].password != password) {
+            req.flash('error', '密码错误！');
+            return res.redirect('/login');
+        }
+        req.session.user = docs[0];
+        req.flash('success', '登录成功!');
+        res.redirect('/');
+    });
+});
+
+app.get('/auth/github', passport.authenticate('github', {scope: 'email'}));
+app.get('/auth/github/callback',
+  passport.authenticate('github', { failureRedirect: '/login'}),
+  function (req, res) {
+    console.log(req.user)
+    req.session.user = {
+      username: req.user.username
+    }
+    res.redirect('/')
+  }
+)
 
 
 routes(app);
