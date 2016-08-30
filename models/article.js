@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient,
     settings = require('../settings.js'),
-    url = settings.url,
+    url = process.dbURL || settings.url,
     markdown = require('markdown').markdown,
     util = require('util');
 
@@ -29,7 +29,7 @@ Article.prototype.save = function (callback) {
             day: year + '-' + month + '-' + day,
             minute: year + '-' + month + '-' + day + ' ' + hour + ':' + minute
         };
-    
+
     var article = {
         author: this.author,
         time: time,
@@ -39,7 +39,7 @@ Article.prototype.save = function (callback) {
         comments: [],
         pv: 0
     };
-    
+
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
@@ -87,7 +87,7 @@ Article.getTen = function (author, page, callback) {
 Article.getOne = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            return callback(err);    
+            return callback(err);
         }
         var col = db.collection('articles');
         col.findOneAndUpdate({
@@ -107,7 +107,7 @@ Article.getOne = function (author, day, title, callback) {
             r.value.content = markdown.toHTML(r.value.content);
             if (r.value.comments) {
                 r.value.comments.forEach(function (comment) {
-                   comment.content = markdown.toHTML(comment.content); 
+                   comment.content = markdown.toHTML(comment.content);
                 });
             }
             callback(null, r.value);
@@ -139,7 +139,7 @@ Article.edit = function (author, day, title, callback) {
 Article.update = function (author, day, title, content, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            return callback(err);    
+            return callback(err);
         }
         db.collection('articles').update({
             author: author,
@@ -163,7 +163,7 @@ Article.update = function (author, day, title, content, callback) {
 Article.remove = function (author, day, title, callback) {
     MongoClient.connect(url, function (err, db) {
         if (err) {
-            return callback(err);    
+            return callback(err);
         }
         db.collection('articles').remove({
             author: author,

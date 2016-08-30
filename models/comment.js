@@ -1,6 +1,6 @@
 var MongoClient = require('mongodb').MongoClient,
     settings = require('../settings.js'),
-    url = settings.url;
+    url = process.dbURL || settings.url;
 
 function Comment(author, day, title, comment) {
     this.author = author;
@@ -16,7 +16,7 @@ Comment.prototype.save = function (callback) {
         day = this.day,
         title = this.title,
         comment = this.comment;
-    
+
     MongoClient.connect(url, function (err, db) {
         if (err) {
             return callback(err);
@@ -35,5 +35,5 @@ Comment.prototype.save = function (callback) {
             callback(null);
         });
     });
-    
+
 };

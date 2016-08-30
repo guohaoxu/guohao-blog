@@ -1,13 +1,15 @@
 var MongoClient = require('mongodb').MongoClient,
     settings = require('../settings.js'),
-    url = settings.url;
+    url = process.dbURL || settings.url;
 
 function User(user) {
     this.username = user.username;
     this.password = user.password;
     this.email = user.email;
+    this.githubId = this.githubId;
     this.tx = 'default.jpg';
     this.desc = user.desc;
+    this.accessToken = user.accessToken;
 }
 
 module.exports = User;
@@ -21,6 +23,7 @@ User.prototype.save = function (callback) {
         githubId: this.githubId,
         tx: this.tx,
         desc: this.desc,
+        accessToken: this.accessToken
     };
 
     MongoClient.connect(url, function (err, db) {
@@ -37,7 +40,7 @@ User.prototype.save = function (callback) {
     });
 };
 
-User.findOrCreate = function (query, callback) {
+User.findOrCreate = function (query, query2, callback) {
   MongoClient.connect(url, function (err, db) {
     if (err) return callback(err);
     db.collection('users').find(query).toArray(function(err, docs) {
@@ -47,7 +50,14 @@ User.findOrCreate = function (query, callback) {
         return callback(err);
       }
       if (!docs.length) {
-        db.collection('users').insertOne(query, function (err, r) {
+        db.collection('users').insertOne({
+          username: query.username,
+          githubId: query2.id,
+          displayName: query2.displayName,
+          email: query2.emails[0].value,
+          tx: query2.photos[0].value,
+          token: query2.accessToken
+        }, function (err, r) {
           db.close()
           return callback(null, r)
         })

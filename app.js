@@ -59,28 +59,11 @@ passport.use('local', new LocalStrategy({
     passwordField: 'password'
   },
   function (username, password, done) {
-    // var user = {
-    //         id: '1',
-    //         username: 'admin',
-    //         password: 'pass'
-    //     }; // 可以配置通过数据库方式读取登陆账号
-    //
-    //     if (username !== user.username) {
-    //         return done(null, false, { message: 'Incorrect username.' });
-    //     }
-    //     if (password !== user.password) {
-    //         return done(null, false, { message: 'Incorrect password.' });
-    //     }
-    //
-    //     return done(null, user);
     User.findByUsername(username, function(err, user) {
-
       var md5 = crypto.createHash('md5'),
         thePassword = md5.update(password).digest('hex');
-
       if (err) {return done(err); }
       if (!user) {
-
         return done(null, false, { message: 'Incorrect username.' });
       }
       if (user.password != thePassword) {
@@ -95,18 +78,15 @@ passport.use(new GithubStrategy({
   clientSecret: 'f093613f65901568ef4767a11ce769235a11037d',
   callbackURL: 'http://localhost:3001/auth/github/callback'
 }, function (accessToken, refreshToken, profile, cb) {
-  // cb(null, profile)
-  // console.log(profile)
   User.findOrCreate({
+    username: profile.username
+  }, {
     githubId: profile.id,
-    username: profile.username,
     displayName: profile.displayName,
     email: profile.emails[0].value,
     tx: profile.photos[0].value,
     token: accessToken
   }, function (err, user) {
-    // user.accessToken = accessToken
-    console.log(user, '-----')
     return cb(err, user);
   });
 }))
@@ -132,34 +112,28 @@ app.post('/login',
     failureFlash: true
   }),
   function (req, res) {
+    console.log('req.user: ', req.user)
     req.session.user = req.user
     res.redirect('/')
   }
 );
 
-// app.post('/login', passport.authenticate('local'), function (req, res) {
-//     var md5 = crypto.createHash('md5'),
-//         password = md5.update(req.body.password).digest('hex');
-//     User.get(req.body.username, function (err, docs) {
-//         if (!docs.length) {
-//             req.flash('error', '用户名不存在！');
-//             return res.redirect('/login');
-//         }
-//         if (docs[0].password != password) {
-//             req.flash('error', '密码错误！');
-//             return res.redirect('/login');
-//         }
-//         req.session.user = docs[0];
-//         req.flash('success', '登录成功!');
-//         res.redirect('/');
-//     });
-// });
+app.all('/userssss', isLoggedIn);
+function isLoggedIn(req, res, next) {
+  if (req.isAuthenticated())
+    return next();
+  res.redirect('/');
+}
+app.get('/logoutttt', function (req, res) {
+  req.logout();
+  res.redirect('/');
+});
 
 app.get('/auth/github', passport.authenticate('github', {scope: 'email'}));
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login'}),
   function (req, res) {
-    console.log(req.user)
+    // console.log('req.user: ', req.user)
     req.session.user =  req.user
     res.redirect('/u/' + req.user.username)
   }

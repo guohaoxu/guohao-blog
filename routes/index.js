@@ -2,6 +2,7 @@ var crypto = require('crypto'),
     User = require('../models/user.js'),
     Article = require('../models/article.js'),
     Comment = require('../models/comment.js'),
+    uuid = require('node-uuid'),
     multer = require('multer'),
     storage = multer.diskStorage({
         destination: function (req, file, cb) {
@@ -115,7 +116,8 @@ module.exports = function (app) {
         var md5 = crypto.createHash('md5'),
             newUser = new User({
                 username: req.body.username,
-                password: md5.update(req.body.password).digest('hex')
+                password: md5.update(req.body.password).digest('hex'),
+                accessToken: uuid.v4()
             });
         User.get(newUser.username, function (err, docs) {
             if (err) {
