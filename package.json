@@ -5,7 +5,7 @@
   "description": "This is my first node.js web application.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "forever app.js"
   },
   "keywords": [
