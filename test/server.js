@@ -24,14 +24,14 @@ describe('String#splict', () => {
   })
 
 })
-
-describe('homepage', () => {
-  it('should repond GET', (done) => {
-    superagent
-      .get('http://localhost:3001')
-      .end((err, res) => {
-        expect(res.status).to.equal(200)
-        done()
-      })
-  })
-})
+// 
+// describe('homepage', () => {
+//   it('should repond GET', (done) => {
+//     superagent
+//       .get('http://localhost:3001')
+//       .end((err, res) => {
+//         expect(res.status).to.equal(200)
+//         done()
+//       })
+//   })
+// })
