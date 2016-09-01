@@ -78,6 +78,7 @@ passport.use(new GithubStrategy({
   clientSecret: 'f093613f65901568ef4767a11ce769235a11037d',
   callbackURL: 'http://localhost:3001/auth/github/callback'
 }, function (accessToken, refreshToken, profile, cb) {
+  console.log('profile: ', profile)
   User.findOrCreate({
     username: profile.username
   }, {
@@ -85,7 +86,7 @@ passport.use(new GithubStrategy({
     displayName: profile.displayName,
     email: profile.emails[0].value,
     tx: profile.photos[0].value,
-    token: accessToken
+    accessToken: accessToken
   }, function (err, user) {
     return cb(err, user);
   });
@@ -133,7 +134,6 @@ app.get('/auth/github', passport.authenticate('github', {scope: 'email'}));
 app.get('/auth/github/callback',
   passport.authenticate('github', { failureRedirect: '/login'}),
   function (req, res) {
-    // console.log('req.user: ', req.user)
     req.session.user =  req.user
     res.redirect('/u/' + req.user.username)
   }

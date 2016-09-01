@@ -54,9 +54,9 @@ User.findOrCreate = function (query, query2, callback) {
           username: query.username,
           githubId: query2.id,
           displayName: query2.displayName,
-          email: query2.emails[0].value,
-          tx: query2.photos[0].value,
-          token: query2.accessToken
+          email: query2.email,
+          tx: query2.tx,
+          accessToken: query2.accessToken
         }, function (err, r) {
           db.close()
           return callback(null, r)

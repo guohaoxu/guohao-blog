@@ -1650,3 +1650,51 @@ Error: Not Found
     at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
     at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
     at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 08:59:47 GMT+0800 (中国标准时间)] /auth/github/callback?code=6932a88a42f6c97a1a7b
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:346:11)
+    at ServerResponse.header (E:\Github\guohao-blog\node_modules\express\lib\response.js:719:10)
+    at ServerResponse.location (E:\Github\guohao-blog\node_modules\express\lib\response.js:836:15)
+    at ServerResponse.redirect (E:\Github\guohao-blog\node_modules\express\lib\response.js:874:18)
+    at E:\Github\guohao-blog\app.js:138:9
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at complete (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:250:13)
+    at E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:257:15
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:421:14)
+[Thu Sep 01 2016 09:04:10 GMT+0800 (中国标准时间)] /auth/github/callback?code=7cdb4789cdad4feb8fc6
+TokenError: The code passed is incorrect or expired.
+    at Strategy.OAuth2Strategy.parseErrorResponse (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:320:12)
+    at Strategy.OAuth2Strategy._createOAuthError (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:367:16)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:166:45
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:77:16
+    at E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:195:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+[Thu Sep 01 2016 09:06:11 GMT+0800 (中国标准时间)] /auth/github/callback?code=99486612bbcdfa3ee165
+TokenError: The code passed is incorrect or expired.
+    at Strategy.OAuth2Strategy.parseErrorResponse (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:320:12)
+    at Strategy.OAuth2Strategy._createOAuthError (E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:367:16)
+    at E:\Github\guohao-blog\node_modules\passport-oauth2\lib\strategy.js:166:45
+    at E:\Github\guohao-blog\node_modules\passport-github\lib\strategy.js:77:16
+    at E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:195:7
+    at passBackControl (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:125:9)
+    at IncomingMessage.<anonymous> (E:\Github\guohao-blog\node_modules\oauth\lib\oauth2.js:143:7)
+    at emitNone (events.js:91:20)
+    at IncomingMessage.emit (events.js:185:7)
+    at endReadableNT (_stream_readable.js:973:12)
+[Thu Sep 01 2016 09:06:35 GMT+0800 (中国标准时间)] /auth/github/callback?code=91a5da2d086ac1de9c91
+Error: Can't set headers after they are sent.
+    at ServerResponse.OutgoingMessage.setHeader (_http_outgoing.js:346:11)
+    at ServerResponse.header (E:\Github\guohao-blog\node_modules\express\lib\response.js:719:10)
+    at ServerResponse.location (E:\Github\guohao-blog\node_modules\express\lib\response.js:836:15)
+    at ServerResponse.redirect (E:\Github\guohao-blog\node_modules\express\lib\response.js:874:18)
+    at E:\Github\guohao-blog\app.js:139:9
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\route.js:131:13)
+    at complete (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:250:13)
+    at E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:257:15
+    at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:421:14)
