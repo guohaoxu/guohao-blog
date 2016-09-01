@@ -1698,3 +1698,279 @@ Error: Can't set headers after they are sent.
     at complete (E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:250:13)
     at E:\Github\guohao-blog\node_modules\passport\lib\middleware\authenticate.js:257:15
     at pass (E:\Github\guohao-blog\node_modules\passport\lib\authenticator.js:421:14)
+[Thu Sep 01 2016 13:55:08 GMT+0800 (中国标准时间)] /bootstrap/css/bootstrap.min.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:55:08 GMT+0800 (中国标准时间)] /css/main.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:55:08 GMT+0800 (中国标准时间)] /js/jquery-1.12.1.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:55:08 GMT+0800 (中国标准时间)] /bootstrap/js/bootstrap.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:55:08 GMT+0800 (中国标准时间)] /js/main.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:17 GMT+0800 (中国标准时间)] /bootstrap/css/bootstrap.min.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:17 GMT+0800 (中国标准时间)] /css/main.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:17 GMT+0800 (中国标准时间)] /js/jquery-1.12.1.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:17 GMT+0800 (中国标准时间)] /bootstrap/js/bootstrap.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:17 GMT+0800 (中国标准时间)] /js/main.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /bootstrap/js/bootstrap.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /images/favicon.ico
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /bootstrap/css/bootstrap.min.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /css/main.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /bootstrap/js/bootstrap.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /js/jquery-1.12.1.min.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /js/main.js
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:29 GMT+0800 (中国标准时间)] /images/favicon.ico
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:32 GMT+0800 (中国标准时间)] /bootstrap/css/bootstrap.min.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 13:57:32 GMT+0800 (中国标准时间)] /css/main.css
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 14:03:44 GMT+0800 (中国标准时间)] /css/
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 14:20:56 GMT+0800 (中国标准时间)] /https://avatars.githubusercontent.com/u/11919716?v=3
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+[Thu Sep 01 2016 14:20:58 GMT+0800 (中国标准时间)] /https://avatars.githubusercontent.com/u/11919716?v=3
+Error: Not Found
+    at E:\Github\guohao-blog\app.js:156:15
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7
+    at Function.process_params (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:330:12)
+    at next (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:271:10)
+    at E:\Github\guohao-blog\node_modules\connect-flash\lib\flash.js:21:5
+    at Layer.handle [as handle_request] (E:\Github\guohao-blog\node_modules\express\lib\router\layer.js:95:5)
+    at trim_prefix (E:\Github\guohao-blog\node_modules\express\lib\router\index.js:312:13)
+    at E:\Github\guohao-blog\node_modules\express\lib\router\index.js:280:7

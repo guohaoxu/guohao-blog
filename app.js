@@ -4,7 +4,7 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     session = require('express-session'),
     flash = require('connect-flash'),
-
+    compression = require('compression'),
     favicon = require('serve-favicon'),
     logger = require('morgan'),
 
@@ -30,6 +30,7 @@ app.set('port', process.env.PORT || 3001);
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
+app.use(compression())
 app.use(favicon(__dirname + '/public/images/favicon.ico'));
 
 app.use(bodyParser.urlencoded({
@@ -49,9 +50,9 @@ app.use(session({
 app.use(logger('dev'));
 app.use(logger({stream: accessLog}));
 
-
-
-app.use(express.static(path.join(__dirname, './public')));
+app.use(express.static(path.join(__dirname, './public'), {
+  maxAge: 1000 * 60 * 60 * 24 * 30 * 12
+}));
 app.use(express.static(path.join(__dirname, './uploads')));
 
 passport.use('local', new LocalStrategy({
